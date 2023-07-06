@@ -11,9 +11,11 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "i18next": "^23.2.7",
     "prettier": "^3.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-i18next": "^13.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

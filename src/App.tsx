@@ -2,14 +2,25 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
+import i18n from './i18n';
+import { useTranslation } from 'react-i18next';
 
 function App() {
   const [count, setCount] = useState(0);
+  const { t } = useTranslation();
+
+  const changeLanguage = (lng: string | undefined) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <>
       <div>
-        <span>test file </span>
+        <div>
+          <button onClick={() => changeLanguage('en')}>en</button>
+          <button onClick={() => changeLanguage('pl')}>pl</button>
+          <div>{t('Welcome to React')}</div>
+        </div>
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>

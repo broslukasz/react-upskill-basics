@@ -5,6 +5,8 @@ import './App.css';
 import i18n from './i18n';
 import { useTranslation } from 'react-i18next';
 
+import Button from '@mui/material/Button';
+
 function App() {
   const [count, setCount] = useState(0);
   const { t } = useTranslation();
@@ -17,8 +19,12 @@ function App() {
     <>
       <div>
         <div>
-          <button onClick={() => changeLanguage('en')}>en</button>
-          <button onClick={() => changeLanguage('pl')}>pl</button>
+          <Button variant="contained" onClick={() => changeLanguage('en')}>
+            en
+          </Button>
+          <Button variant="contained" onClick={() => changeLanguage('pl')}>
+            pl
+          </Button>
           <div>{t('Welcome to React')}</div>
         </div>
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">

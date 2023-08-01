@@ -8,11 +8,14 @@ import './App.css';
 import i18n from './i18n';
 import { useTranslation } from 'react-i18next';
 
-
+import Button from '@mui/material/Button';
 import { AppBar, Toolbar, MenuItem } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
+import SaveIcon from '@mui/icons-material/Save';
+import Grid from '@mui/material/Grid';
 import { Invoice } from './components/Invoice';
+import InvoiceList from './components/Invoice-list';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -36,9 +39,29 @@ function App() {
         </Toolbar>
       </AppBar>
 
+      <InvoiceList></InvoiceList>
+
       <Invoice></Invoice>
 
       {/* Pytanie: dlaczego jak daje m={2} dodaje mi poziomego scrolla */}
+      <Grid container spacing={2} p={4} direction={'column'} mb={12}>
+        <Grid item container>
+          <Grid
+            item
+            xs={6}
+            container
+            justifyContent="flex-end"
+            alignItems="flex-start"
+            gap={2}
+            sx={{ height: 'fit-content' }}
+          >
+            {/* Kiedy to usuwam to pojawia się błąd w konsoli */}
+            <Button variant="contained" startIcon={<SaveIcon />}>
+              Send
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
 
       {/* <div>
         <div>

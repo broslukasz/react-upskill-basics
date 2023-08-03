@@ -39,9 +39,9 @@ function App() {
         </Toolbar>
       </AppBar>
 
-      <InvoiceList></InvoiceList>
+      <InvoiceList />
 
-      <Invoice></Invoice>
+      <Invoice />
 
       {/* Pytanie: dlaczego jak daje m={2} dodaje mi poziomego scrolla */}
       <Grid container spacing={2} p={4} direction={'column'} mb={12}>

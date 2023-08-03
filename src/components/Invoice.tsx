@@ -5,7 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import SaveIcon from '@mui/icons-material/Save';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export function Invoice() {
+export default function Invoice() {
   return (
     <>
       <Grid container spacing={2} p={4} direction={'column'} mb={12}>

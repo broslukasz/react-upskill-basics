@@ -14,8 +14,8 @@ import Typography from '@mui/material/Typography';
 
 import SaveIcon from '@mui/icons-material/Save';
 import Grid from '@mui/material/Grid';
-import { Invoice } from './components/Invoice';
 import InvoiceList from './components/Invoice-list';
+import Invoice from './components/Invoice';
 
 function App() {
   const [count, setCount] = useState(0);

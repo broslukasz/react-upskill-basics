@@ -8,13 +8,10 @@ import './App.css';
 import i18n from './i18n';
 import { useTranslation } from 'react-i18next';
 
-import Button from '@mui/material/Button';
 import { AppBar, Toolbar, MenuItem } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-import SaveIcon from '@mui/icons-material/Save';
-import Grid from '@mui/material/Grid';
-import InvoiceList from './components/Invoice-list';
+import InvoiceList from './components/InvoiceList';
 import Invoice from './components/Invoice';
 
 function App() {

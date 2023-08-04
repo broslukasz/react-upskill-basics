@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid';
 
 function createData(invoiceNumber: string, created: string, validUntil: string, amount: number, actions: null) {
   return { invoiceNumber, created, validUntil, amount, actions };

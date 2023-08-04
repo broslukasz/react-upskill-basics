@@ -43,24 +43,6 @@ function App() {
 
       <Invoice />
 
-      {/* Pytanie: dlaczego jak daje m={2} dodaje mi poziomego scrolla */}
-      <Grid container spacing={2} p={4} direction={'column'} mb={12}>
-        <Grid
-          item
-          xs={6}
-          container
-          justifyContent="flex-end"
-          alignItems="flex-start"
-          gap={2}
-          sx={{ height: 'fit-content' }}
-        >
-          {/* Kiedy to usuwam to pojawia się błąd w konsoli */}
-          <Button variant="contained" startIcon={<SaveIcon />}>
-            Send
-          </Button>
-        </Grid>
-      </Grid>
-
       {/* <div>
         <div>
           <Button variant="contained" onClick={() => changeLanguage('en')}>

@@ -7,8 +7,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
 
 function createData(invoiceNumber: string, created: string, validUntil: string, amount: number, actions: null) {
   return { invoiceNumber, created, validUntil, amount, actions };
@@ -24,7 +24,6 @@ const rows = [
 
 export default function InvoiceList() {
   return (
-    // Skąd lepiej importować? Bardziej czy mniej szczegółowo?
     <Grid container spacing={2} p={4} direction={'column'} mb={0}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">

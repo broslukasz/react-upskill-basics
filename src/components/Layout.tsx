@@ -6,7 +6,7 @@ import i18n from '../i18n';
 export default function Layout() {
   const { t } = useTranslation();
 
-  const changeLanguage = (lng: string | undefined) => {
+  const changeLanguage = (lng: 'en' | 'pl') => {
     i18n.changeLanguage(lng);
   };
 

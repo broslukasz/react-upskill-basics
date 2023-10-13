@@ -15,16 +15,22 @@ export default function Layout() {
     <>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" color="inherit" component="div">
-            <Link to="" color="black">
-              Invoices
-            </Link>
-          </Typography>
 
           <MenuItem>
-            <Typography textAlign="center">
-              <Link to="add">New Invoice</Link>
-            </Typography>
+            <Link to="">
+              <Button>
+                <Typography color={'ButtonText'} textAlign="center">Invoices</Typography>
+              </Button>
+            </Link>
+          </MenuItem>
+
+
+          <MenuItem>
+            <Link to="add">
+              <Button>
+                <Typography color={'ButtonText'} textAlign="center">New Invoice</Typography>
+              </Button>
+            </Link>
           </MenuItem>
         </Toolbar>
       </AppBar>

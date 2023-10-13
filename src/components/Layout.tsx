@@ -8,7 +8,8 @@ export default function Layout() {
   const { t } = useTranslation();
 
   const changeLanguage = useCallback((lng: 'en' | 'pl') => {
-    i18n.changeLanguage(lng);
+    i18n.changeLanguage(lng)
+      .catch(error => console.log('Change language failed:', error))
   }, [])
 
   return (

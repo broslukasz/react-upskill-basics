@@ -1,16 +1,10 @@
 import { AppBar, Toolbar, MenuItem, Typography, Button } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Link, Outlet } from 'react-router-dom';
-import { useCallback } from 'react';
 import i18n from '../i18n';
 
 export default function Layout() {
   const { t } = useTranslation();
-
-  const changeLanguage = useCallback((lng: 'en' | 'pl') => {
-    i18n.changeLanguage(lng)
-      .catch(error => console.log('Change language failed:', error))
-  }, [])
 
   return (
     <>
@@ -38,10 +32,10 @@ export default function Layout() {
       <Outlet />
 
       <div>
-        <Button variant="contained" onClick={() => changeLanguage('en')}>
+        <Button variant="contained" onClick={() => i18n.changeLanguage('en')}>
           en
         </Button>
-        <Button variant="contained" onClick={() => changeLanguage('pl')}>
+        <Button variant="contained" onClick={() => i18n.changeLanguage('pl')}>
           pl
         </Button>
         <div>{t('Welcome to React')}</div>

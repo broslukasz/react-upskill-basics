@@ -1,5 +1,4 @@
-import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers';
 
 import SaveIcon from '@mui/icons-material/Save';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -19,14 +18,11 @@ export default function Invoice() {
             <TextField fullWidth label="No." variant="standard" />
             <Grid item container spacing={2} pt={2}>
               <Grid item sm={6}>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker />
-                </LocalizationProvider>
+
+                <DatePicker />
               </Grid>
               <Grid item sm={6}>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker />
-                </LocalizationProvider>
+                <DatePicker />
               </Grid>
             </Grid>
           </Grid>

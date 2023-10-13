@@ -26,11 +26,10 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <RouterProvider router={router} />
       </LocalizationProvider>
-    </>);
+  );
 }
 
 export default App;

@@ -1,14 +1,15 @@
 import { AppBar, Toolbar, MenuItem, Typography, Button } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Link, Outlet } from 'react-router-dom';
+import { useCallback } from 'react';
 import i18n from '../i18n';
 
 export default function Layout() {
   const { t } = useTranslation();
 
-  const changeLanguage = (lng: 'en' | 'pl') => {
+  const changeLanguage = useCallback((lng: 'en' | 'pl') => {
     i18n.changeLanguage(lng);
-  };
+  }, [])
 
   return (
     <>

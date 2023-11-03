@@ -95,7 +95,7 @@ export default function Invoice() {
               <Button className="mr-2" variant="outlined">
                 Cancel
               </Button>
-              <Button variant="contained" startIcon={<SaveIcon />}>
+              <Button variant="contained" type='submit' startIcon={<SaveIcon />}>
                 Send
               </Button>
             </Grid>

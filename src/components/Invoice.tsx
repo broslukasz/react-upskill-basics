@@ -31,33 +31,28 @@ interface IInvoiceForm {
   sender: IPersonalData
 }
 
+const personalData = {
+  companyName: null,
+  city: null,
+  street: null,
+  postcode: null,
+  nip: null,
+  phoneNumber: null,
+  email: null,
+  bankAccount: null,
+}
+
+const defaultValues = {
+  invoiceNumber: null,
+  dateFrom: null,
+  dateTo: null,
+  recipient: personalData,
+  sender: personalData
+}
+
 export default function Invoice() {
   const { handleSubmit, register, control } = useForm<IInvoiceForm>({
-    defaultValues: {
-      invoiceNumber: null,
-      dateFrom: null,
-      dateTo: null,
-      recipient: {
-        companyName: null,
-        city: null,
-        street: null,
-        postcode: null,
-        nip: null,
-        phoneNumber: null,
-        email: null,
-        bankAccount: null,
-      },
-      sender: {
-        companyName: null,
-        city: null,
-        street: null,
-        postcode: null,
-        nip: null,
-        phoneNumber: null,
-        email: null,
-        bankAccount: null,
-      }
-    },
+    defaultValues,
   })
 
   const onSubmit: SubmitHandler<IInvoiceForm> = (data) => console.log(data)

@@ -9,26 +9,15 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
-
-
-interface IPersonalData {
-
-  companyName: string;
-  city: string;
-  street: string;
-  postcode: string;
-  nip: string;
-  phoneNumber: number | null;
-  email: string,
-  bankAccount: string;
-}
+import { IPersonalDataForm } from './i-personal-data';
+import PersonalDataForm from './PersonalDataForm';
 
 interface IInvoiceForm {
   invoiceNumber: number | null,
   dateFrom: Date | null;
   dateTo: Date | null;
-  recipient: IPersonalData;
-  sender: IPersonalData
+  recipient: IPersonalDataForm;
+  sender: IPersonalDataForm
 }
 
 const personalData = {
@@ -108,15 +97,9 @@ export default function Invoice() {
               </Typography>
 
               <Box mt={6}>
-                <TextField {...register('recipient.companyName', { required: true })} id="recipient-company-name" label="Company name" variant="standard" fullWidth />
-                <TextField {...register('recipient.city', { required: true })} id="recipient-city" label="City" variant="standard" fullWidth />
-                <TextField {...register('recipient.street', { required: true })} id="recipient-street" label="Street" variant="standard" fullWidth />
-                <TextField {...register('recipient.postcode', { required: true })} id="recipient-postcode" label="Postcode" variant="standard" fullWidth />
-                <TextField {...register('recipient.nip', { required: true })} id="recipient-nip" label="NIP" variant="standard" fullWidth />
-                <TextField {...register('recipient.phoneNumber', { required: true })} id="recipient-tel" label="Tel" variant="standard" fullWidth />
-                <TextField {...register('recipient.email', { required: true })} id="recipient-email" label="E-mail" variant="standard" fullWidth />
-                <TextField {...register('recipient.bankAccount', { required: true })} id="recipient-bank-account" label="Bank Account" variant="standard" fullWidth />
+                <PersonalDataForm personalData={defaultValues.recipient}/>
               </Box>
+
             </Grid>
             <Grid xs={6} item>
               <Typography variant="h4" component="p">
@@ -124,15 +107,7 @@ export default function Invoice() {
               </Typography>
 
               <Box mt={6}>
-                {/* Pytanie Dlaczego czasem daje kursor na koniec */}
-                <TextField {...register('sender.companyName', { required: true })} id="sender-company-name" label="Company name" variant="standard" fullWidth />
-                <TextField {...register('sender.city', { required: true })} id="sender-city" label="City" variant="standard" fullWidth />
-                <TextField {...register('sender.street', { required: true })} id="sender-street" label="Street" variant="standard" fullWidth />
-                <TextField {...register('sender.postcode', { required: true })} id="sender-postcode" label="Postcode" variant="standard" fullWidth />
-                <TextField {...register('sender.nip', { required: true })} id="sender-nip" label="NIP" variant="standard" fullWidth />
-                <TextField {...register('sender.phoneNumber', { required: true })} id="sender-tel" label="Tel" variant="standard" fullWidth />
-                <TextField {...register('sender.email', { required: true })} id="sender-email" label="E-mail" variant="standard" fullWidth />
-                <TextField {...register('sender.bankAccount', { required: true })} id="sender-bank-account" label="Bank Account" variant="standard" fullWidth />
+                <PersonalDataForm personalData={defaultValues.sender}/>
               </Box>
             </Grid>
           </Grid>

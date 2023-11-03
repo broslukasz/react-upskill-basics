@@ -8,11 +8,11 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import { SubmitHandler, useForm, Controller } from 'react-hook-form';
+import { type SubmitHandler, useForm, Controller } from 'react-hook-form';
 import { IPersonalDataForm } from './i-personal-data';
 import PersonalDataForm from './PersonalDataForm';
 
-interface IInvoiceForm {
+export interface IInvoiceForm {
   invoiceNumber: number | null,
   dateFrom: Date | null;
   dateTo: Date | null;
@@ -97,7 +97,7 @@ export default function Invoice() {
               </Typography>
 
               <Box mt={6}>
-                <PersonalDataForm personalData={defaultValues.recipient}/>
+                <PersonalDataForm register={register} variant='recipient'/>
               </Box>
 
             </Grid>
@@ -107,7 +107,7 @@ export default function Invoice() {
               </Typography>
 
               <Box mt={6}>
-                <PersonalDataForm personalData={defaultValues.sender}/>
+                <PersonalDataForm register={register} variant='sender'/>
               </Box>
             </Grid>
           </Grid>

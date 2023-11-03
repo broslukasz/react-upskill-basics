@@ -13,18 +13,18 @@ import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 
 interface IPersonalData {
 
-  companyName: string | null;
-  city: string | null;
-  street: string | null;
-  postcode: string | null;
-  nip: number | null;
+  companyName: string;
+  city: string;
+  street: string;
+  postcode: string;
+  nip: string;
   phoneNumber: number | null;
-  email: string | null,
-  bankAccount: string | null;
+  email: string,
+  bankAccount: string;
 }
 
 interface IInvoiceForm {
-  invoiceNumber: null,
+  invoiceNumber: number | null,
   dateFrom: Date | null;
   dateTo: Date | null;
   recipient: IPersonalData;
@@ -32,14 +32,14 @@ interface IInvoiceForm {
 }
 
 const personalData = {
-  companyName: null,
-  city: null,
-  street: null,
-  postcode: null,
-  nip: null,
+  companyName: '',
+  city: '',
+  street: '',
+  postcode: '',
+  nip: '',
   phoneNumber: null,
-  email: null,
-  bankAccount: null,
+  email: '',
+  bankAccount: '',
 }
 
 const defaultValues = {

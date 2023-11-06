@@ -9,16 +9,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import { type SubmitHandler, useForm, Controller } from 'react-hook-form';
-import { IPersonalDataForm } from './i-personal-data';
 import PersonalDataForm from './PersonalDataForm';
-
-export interface IInvoiceForm {
-  invoiceNumber: number | null,
-  dateFrom: Date | null;
-  dateTo: Date | null;
-  recipient: IPersonalDataForm;
-  sender: IPersonalDataForm
-}
+import { IInvoiceForm } from './i-invoice-form';
 
 const personalData = {
   companyName: '',

@@ -1,4 +1,4 @@
-import { IPersonalDataForm } from "./i-personal-data-form";
+import type { IPersonalDataForm } from "./i-personal-data-form";
 
 export interface IInvoiceForm {
   invoiceNumber: number | null,

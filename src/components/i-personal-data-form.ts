@@ -5,6 +5,6 @@ export interface IPersonalDataForm {
   postcode: string;
   nip: string;
   phoneNumber: number | null;
-  email: string,
+  email: string;
   bankAccount: string;
 }

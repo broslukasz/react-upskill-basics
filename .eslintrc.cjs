@@ -28,6 +28,6 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react'],
   rules: {
     'react/react-in-jsx-scope': 0,
-    "@typescript-eslint/consistent-type-imports": "error"
+    '@typescript-eslint/consistent-type-imports': 'error',
   },
 };

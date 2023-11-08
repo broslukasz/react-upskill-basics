@@ -21,22 +21,22 @@ const personalData = {
   phoneNumber: null,
   email: '',
   bankAccount: '',
-}
+};
 
 const defaultValues = {
   invoiceNumber: null,
   dateFrom: null,
   dateTo: null,
   recipient: personalData,
-  sender: personalData
-}
+  sender: personalData,
+};
 
 export default function Invoice() {
   const { handleSubmit, register, control } = useForm<IInvoiceForm>({
     defaultValues,
-  })
+  });
 
-  const onSubmit: SubmitHandler<IInvoiceForm> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<IInvoiceForm> = (data) => console.log(data);
 
   return (
     <>
@@ -47,20 +47,20 @@ export default function Invoice() {
               <TextField {...register('invoiceNumber', { required: true })} fullWidth label="No." variant="standard" />
               <Grid item container spacing={2} pt={2}>
                 <Grid item sm={6}>
-                <Controller
-                  name="dateFrom"
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field }) => <DatePicker  {...field}/>}
-                />
+                  <Controller
+                    name="dateFrom"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => <DatePicker {...field} />}
+                  />
                 </Grid>
                 <Grid item sm={6}>
-                <Controller
-                  name="dateTo"
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field }) => <DatePicker  {...field}/>}
-                />
+                  <Controller
+                    name="dateTo"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => <DatePicker {...field} />}
+                  />
                 </Grid>
               </Grid>
             </Grid>
@@ -76,7 +76,7 @@ export default function Invoice() {
               <Button className="mr-2" variant="outlined">
                 Cancel
               </Button>
-              <Button variant="contained" type='submit' startIcon={<SaveIcon />}>
+              <Button variant="contained" type="submit" startIcon={<SaveIcon />}>
                 Send
               </Button>
             </Grid>
@@ -89,9 +89,8 @@ export default function Invoice() {
               </Typography>
 
               <Box mt={6}>
-                <PersonalDataForm register={register} variant='recipient'/>
+                <PersonalDataForm register={register} variant="recipient" />
               </Box>
-
             </Grid>
             <Grid xs={6} item>
               <Typography variant="h4" component="p">
@@ -99,7 +98,7 @@ export default function Invoice() {
               </Typography>
 
               <Box mt={6}>
-                <PersonalDataForm register={register} variant='sender'/>
+                <PersonalDataForm register={register} variant="sender" />
               </Box>
             </Grid>
           </Grid>

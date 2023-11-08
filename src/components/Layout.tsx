@@ -10,20 +10,22 @@ export default function Layout() {
     <>
       <AppBar position="static">
         <Toolbar>
-
           <MenuItem>
             <Link to="">
               <Button>
-                <Typography color={'ButtonText'} textAlign="center">Invoices</Typography>
+                <Typography color={'ButtonText'} textAlign="center">
+                  Invoices
+                </Typography>
               </Button>
             </Link>
           </MenuItem>
 
-
           <MenuItem>
             <Link to="add">
               <Button>
-                <Typography color={'ButtonText'} textAlign="center">New Invoice</Typography>
+                <Typography color={'ButtonText'} textAlign="center">
+                  New Invoice
+                </Typography>
               </Button>
             </Link>
           </MenuItem>

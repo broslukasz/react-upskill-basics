@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import { type SubmitHandler, useForm, Controller } from 'react-hook-form';
 import PersonalDataForm from './PersonalDataForm';
-import type { IInvoiceForm } from './i-invoice-form';
+import type { IInvoiceForm } from './InvoiceForm.interface';
 
 const personalData = {
   companyName: '',

@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material';
 import type { UseFormRegister } from 'react-hook-form';
-import type { IInvoiceForm } from './i-invoice-form';
+import type { IInvoiceForm } from './InvoiceForm.interface';
 
 type PersonalDataProps = {
   register: UseFormRegister<IInvoiceForm>;

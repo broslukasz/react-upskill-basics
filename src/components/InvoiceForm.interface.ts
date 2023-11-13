@@ -1,3 +1,4 @@
+import type { IAmountsForm } from './AmountsForm.interface';
 import type { IPersonalDataForm } from './PersonalDataForm.interface';
 
 export interface IInvoiceForm {
@@ -6,4 +7,5 @@ export interface IInvoiceForm {
   dateTo: Date | null;
   recipient: IPersonalDataForm;
   sender: IPersonalDataForm;
+  amounts: IAmountsForm[];
 }

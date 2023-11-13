@@ -1,18 +1,18 @@
 import { DatePicker } from '@mui/x-date-pickers';
 
 import SaveIcon from '@mui/icons-material/Save';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
 import { type SubmitHandler, useForm, Controller } from 'react-hook-form';
 import PersonalDataForm from './PersonalDataForm';
 import type { IInvoiceForm } from './InvoiceForm.interface';
+import AmountForm from './AmountsForm';
+import type { IPersonalDataForm } from './PersonalDataForm.interface';
 
-const personalData = {
+const personalData: IPersonalDataForm = {
   companyName: '',
   city: '',
   street: '',
@@ -23,12 +23,21 @@ const personalData = {
   bankAccount: '',
 };
 
-const defaultValues = {
+const defaultValues: IInvoiceForm = {
   invoiceNumber: null,
   dateFrom: null,
   dateTo: null,
   recipient: personalData,
   sender: personalData,
+  amounts: [
+    {
+      name: 'Test Name',
+      amount: 1,
+      unit: 'PLN',
+      tax: null,
+      price: null,
+    },
+  ],
 };
 
 export default function Invoice() {
@@ -77,7 +86,7 @@ export default function Invoice() {
                 Cancel
               </Button>
               <Button variant="contained" type="submit" startIcon={<SaveIcon />}>
-                Send
+                Save
               </Button>
             </Grid>
           </Grid>
@@ -104,34 +113,7 @@ export default function Invoice() {
           </Grid>
 
           <Grid item container>
-            <Grid item container spacing={3}>
-              <Grid item xs={6}>
-                <TextField id="name" label="Name" variant="standard" fullWidth />
-              </Grid>
-
-              <Grid item xs={1.2}>
-                <TextField type="number" id="amount" label="Amount" variant="standard" fullWidth />
-              </Grid>
-
-              <Grid item xs={1.2}>
-                <TextField id="unit" label="Unit" variant="standard" fullWidth />
-              </Grid>
-
-              <Grid item xs={1.2}>
-                <TextField type="number" id="tax" label="Tax" variant="standard" fullWidth />
-              </Grid>
-
-              <Grid item xs={1.2}>
-                <TextField type="number" id="price" label="Price" variant="standard" fullWidth />
-              </Grid>
-
-              <Grid item container xs={1.2} alignItems={'center'} justifyContent={'center'}>
-                {/* Pytanie: Jak zrobić autoimport do ikon */}
-                <IconButton aria-label="delete">
-                  <DeleteIcon />
-                </IconButton>
-              </Grid>
-            </Grid>
+            <AmountForm register={register} control={control} />
           </Grid>
         </form>
       </Grid>

@@ -1,4 +1,5 @@
 export interface IAmountsForm {
+  id: string;
   name: string;
   amount: number | null;
   unit: string;

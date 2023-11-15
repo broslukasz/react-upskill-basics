@@ -31,9 +31,10 @@ const defaultValues: IInvoiceForm = {
   sender: personalData,
   amounts: [
     {
-      name: 'Test Name',
-      amount: 1,
-      unit: 'PLN',
+      id: Date.now().toString(),
+      name: '',
+      amount: null,
+      unit: '',
       tax: null,
       price: null,
     },

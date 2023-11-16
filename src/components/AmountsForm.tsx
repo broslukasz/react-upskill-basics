@@ -3,17 +3,18 @@ import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
-import type { IInvoiceForm } from './InvoiceForm.interface';
+import type { IInvoiceForm } from './Models/InvoiceForm.interface';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { type UseFormRegister, type Control, useFieldArray } from 'react-hook-form';
+import { type UseFormRegister, type Control, useFieldArray, type FieldErrors } from 'react-hook-form';
 
 type AmountsProps = {
   register: UseFormRegister<IInvoiceForm>;
   control: Control<IInvoiceForm>;
+  errors: FieldErrors<IInvoiceForm>;
 };
 
-export default function AmountForm({ register, control }: AmountsProps) {
+export default function AmountForm({ register, control, errors }: AmountsProps) {
   const { fields, remove, append } = useFieldArray<IInvoiceForm>({
     control,
     name: 'amounts',
@@ -31,22 +32,22 @@ export default function AmountForm({ register, control }: AmountsProps) {
               label="Name"
               variant="standard"
               fullWidth
+              error={!!errors?.amounts?.[index]?.name}
             />
           </Grid>
-
           <Grid item xs={1.2}>
             <TextField
               type="number"
               // ToDo Nie podpowiada składni po index
               key={field.id}
-              {...register(`amounts.${index}.amount`)}
+              {...register(`amounts.${index}.amount`, { valueAsNumber: true })}
               id="amount"
               label="Amount"
               variant="standard"
               fullWidth
+              error={!!errors?.amounts?.[index]?.amount}
             />
           </Grid>
-
           <Grid item xs={1.2}>
             <TextField
               id="unit"
@@ -55,33 +56,33 @@ export default function AmountForm({ register, control }: AmountsProps) {
               label="Unit"
               variant="standard"
               fullWidth
+              error={!!errors?.amounts?.[index]?.unit?.message}
             />
           </Grid>
-
           <Grid item xs={1.2}>
             <TextField
               type="number"
               key={field.id}
-              {...register(`amounts.${index}.tax`)}
+              {...register(`amounts.${index}.tax`, { valueAsNumber: true })}
               id="tax"
               label="Tax"
               variant="standard"
               fullWidth
+              error={!!errors?.amounts?.[index]?.tax}
             />
           </Grid>
-
           <Grid item xs={1.2}>
             <TextField
               type="number"
               key={field.id}
-              {...register(`amounts.${index}.price`)}
+              {...register(`amounts.${index}.price`, { valueAsNumber: true })}
               id="price"
               label="Price"
               variant="standard"
               fullWidth
+              error={!!errors?.amounts?.[index]?.price}
             />
           </Grid>
-
           <Grid item container xs={1.2} alignItems={'center'} justifyContent={'center'}>
             {/* Pytanie: Jak zrobić autoimport do ikon */}
 

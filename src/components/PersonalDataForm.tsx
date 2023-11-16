@@ -1,13 +1,14 @@
 import { TextField } from '@mui/material';
-import type { UseFormRegister } from 'react-hook-form';
-import type { IInvoiceForm } from './InvoiceForm.interface';
+import { type FieldErrors, type UseFormRegister } from 'react-hook-form';
+import type { IInvoiceForm } from './Models/InvoiceForm.interface';
 
 type PersonalDataProps = {
   register: UseFormRegister<IInvoiceForm>;
   variant: keyof Record<'sender' | 'recipient', IInvoiceForm>;
+  errors: FieldErrors<IInvoiceForm>;
 };
 
-export default function PersonalDataForm({ register, variant }: PersonalDataProps) {
+export default function PersonalDataForm({ register, variant, errors }: PersonalDataProps) {
   return (
     <>
       <TextField
@@ -16,13 +17,16 @@ export default function PersonalDataForm({ register, variant }: PersonalDataProp
         label="Company name"
         variant="standard"
         fullWidth
+        error={!!errors[variant]?.companyName?.message}
       />
+      {errors[variant]?.companyName?.message && <p>{errors[variant]?.companyName?.message}</p>}
       <TextField
         {...register(`${variant}.city`, { required: true })}
         id="city"
         label="City"
         variant="standard"
         fullWidth
+        error={!!errors[variant]?.city}
       />
       <TextField
         {...register(`${variant}.street`, { required: true })}
@@ -30,6 +34,7 @@ export default function PersonalDataForm({ register, variant }: PersonalDataProp
         label="Street"
         variant="standard"
         fullWidth
+        error={!!errors[variant]?.street}
       />
       <TextField
         {...register(`${variant}.postcode`, { required: true })}
@@ -37,6 +42,7 @@ export default function PersonalDataForm({ register, variant }: PersonalDataProp
         label="Postcode"
         variant="standard"
         fullWidth
+        error={!!errors[variant]?.postcode}
       />
       <TextField
         {...register(`${variant}.nip`, { required: true })}
@@ -44,13 +50,15 @@ export default function PersonalDataForm({ register, variant }: PersonalDataProp
         label="NIP"
         variant="standard"
         fullWidth
+        error={!!errors[variant]?.nip}
       />
       <TextField
-        {...register(`${variant}.phoneNumber`, { required: true })}
+        {...register(`${variant}.phoneNumber`, { required: true, valueAsNumber: true })}
         id="tel"
         label="Tel"
         variant="standard"
         fullWidth
+        error={!!errors[variant]?.phoneNumber}
       />
       <TextField
         {...register(`${variant}.email`, { required: true })}
@@ -58,6 +66,7 @@ export default function PersonalDataForm({ register, variant }: PersonalDataProp
         label="E-mail"
         variant="standard"
         fullWidth
+        error={!!errors[variant]?.email}
       />
       <TextField
         {...register(`${variant}.bankAccount`, { required: true })}
@@ -65,6 +74,7 @@ export default function PersonalDataForm({ register, variant }: PersonalDataProp
         label="Bank Account"
         variant="standard"
         fullWidth
+        error={!!errors[variant]?.bankAccount}
       />
     </>
   );

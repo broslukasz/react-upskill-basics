@@ -18,8 +18,8 @@ export default function PersonalDataForm({ register, variant, errors }: Personal
         variant="standard"
         fullWidth
         error={!!errors[variant]?.companyName?.message}
+        helperText={errors[variant]?.companyName?.message}
       />
-      {errors[variant]?.companyName?.message && <p>{errors[variant]?.companyName?.message}</p>}
       <TextField
         {...register(`${variant}.city`, { required: true })}
         id="city"

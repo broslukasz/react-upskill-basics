@@ -17,7 +17,7 @@ type AmountsProps = {
 export default function AmountForm({ register, control, errors }: AmountsProps) {
   const { fields, remove, append } = useFieldArray<IInvoiceForm>({
     control,
-    name: 'amounts',
+    name: 'items',
   });
 
   return (
@@ -28,7 +28,7 @@ export default function AmountForm({ register, control, errors }: AmountsProps) 
             <TextField
               id="name"
               key={field.id}
-              {...register(`amounts.${index}.name`)}
+              {...register(`items.${index}.name`)}
               label="Name"
               variant="standard"
               fullWidth
@@ -40,7 +40,7 @@ export default function AmountForm({ register, control, errors }: AmountsProps) 
               type="number"
               // ToDo Nie podpowiada składni po index
               key={field.id}
-              {...register(`amounts.${index}.amount`, { valueAsNumber: true })}
+              {...register(`items.${index}.amount`, { valueAsNumber: true })}
               id="amount"
               label="Amount"
               variant="standard"
@@ -52,7 +52,7 @@ export default function AmountForm({ register, control, errors }: AmountsProps) 
             <TextField
               id="unit"
               key={field.id}
-              {...register(`amounts.${index}.unit`)}
+              {...register(`items.${index}.unit`)}
               label="Unit"
               variant="standard"
               fullWidth
@@ -63,7 +63,7 @@ export default function AmountForm({ register, control, errors }: AmountsProps) 
             <TextField
               type="number"
               key={field.id}
-              {...register(`amounts.${index}.tax`, { valueAsNumber: true })}
+              {...register(`items.${index}.tax`, { valueAsNumber: true })}
               id="tax"
               label="Tax"
               variant="standard"
@@ -75,7 +75,7 @@ export default function AmountForm({ register, control, errors }: AmountsProps) 
             <TextField
               type="number"
               key={field.id}
-              {...register(`amounts.${index}.price`, { valueAsNumber: true })}
+              {...register(`items.${index}.price`, { valueAsNumber: true })}
               id="price"
               label="Price"
               variant="standard"

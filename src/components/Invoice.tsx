@@ -13,6 +13,8 @@ import AmountForm from './AmountsForm';
 import type { IPersonalDataForm } from './Models/PersonalDataForm.interface';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { IAmountsForm } from './Models/ItemsForm.interface';
+import { useInvoice } from './get-invoice';
+import { useParams } from 'react-router-dom';
 
 const amountsData: IAmountsForm = [
   {
@@ -46,6 +48,20 @@ const defaultValues: IInvoiceForm = {
 };
 
 export default function Invoice() {
+  const { id } = useParams();
+  const { data } = useInvoice(id as string);
+  const invoice = data as IInvoiceForm;
+
+  if (invoice) {
+    defaultValues.createdAt = invoice.createdAt;
+    defaultValues.validUntil = invoice.validUntil;
+    defaultValues.recipient = invoice.recipient;
+    defaultValues.sender = invoice.sender;
+    defaultValues.items = invoice.items;
+  }
+
+  const onSubmit: SubmitHandler<IInvoiceForm> = (data) => console.log(data);
+
   const {
     handleSubmit,
     register,
@@ -55,8 +71,6 @@ export default function Invoice() {
     defaultValues,
     resolver: zodResolver(invoiceFormSchema),
   });
-
-  const onSubmit: SubmitHandler<IInvoiceForm> = (data) => console.log(data);
 
   return (
     <>

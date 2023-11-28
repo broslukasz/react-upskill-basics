@@ -11,23 +11,16 @@ import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import { useInvoiceList } from './use-invoice-list';
 import type { IInvoiceForm } from './Models/InvoiceForm.interface';
+import { Link } from 'react-router-dom';
 
 function createData(invoiceNumber: string, created: string, validUntil: string, amount: number, actions: null) {
   return { invoiceNumber, created, validUntil, amount, actions };
 }
 
-const rows = [
-  createData('21/23/20', new Date('04/22/2020').toDateString(), new Date('12/6/2021').toDateString(), 838, null),
-  createData('22/23/20', new Date('04/22/2020').toDateString(), new Date('12/6/2021').toDateString(), 838, null),
-  createData('23/23/20', new Date('04/22/2020').toDateString(), new Date('12/6/2021').toDateString(), 838, null),
-  createData('24/23/20', new Date('04/22/2020').toDateString(), new Date('12/6/2021').toDateString(), 838, null),
-  createData('25/23/20', new Date('04/22/2020').toDateString(), new Date('12/6/2021').toDateString(), 838, null),
-];
-
 export default function InvoiceList() {
-  const { data, error, status } = useInvoiceList();
+  const { data } = useInvoiceList();
 
-  const rows2 = data as IInvoiceForm[];
+  const rows = (data as IInvoiceForm[]) ?? [];
 
   return (
     <Grid container spacing={2} p={4} direction={'column'} mb={0}>
@@ -43,24 +36,27 @@ export default function InvoiceList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows2.map((row) => (
-              <TableRow key={row.invoiceNumber} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell component="th" scope="row">
-                  {row.id}
-                </TableCell>
-                <TableCell align="right">{row.createdAt}</TableCell>
-                <TableCell align="right">{row.validUntil}</TableCell>
-                <TableCell align="right">{row.items.reduce((a, b) => a + b.amount, 0)}</TableCell>
-                <TableCell align="right">
-                  <IconButton aria-label="delete">
-                    <EditIcon />
-                  </IconButton>
-                  <IconButton aria-label="delete">
-                    <DeleteIcon />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
+            {rows.length &&
+              rows.map((row) => (
+                <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="th" scope="row">
+                    {row.id}
+                  </TableCell>
+                  <TableCell align="right">{row.createdAt}</TableCell>
+                  <TableCell align="right">{row.validUntil}</TableCell>
+                  <TableCell align="right">{row.items.reduce((a, b) => a + b.amount, 0)}</TableCell>
+                  <TableCell align="right">
+                    <Link to={{ pathname: `edit/${row.id}` }}>
+                      <IconButton aria-label="delete">
+                        <EditIcon />
+                      </IconButton>
+                    </Link>
+                    <IconButton aria-label="delete">
+                      <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

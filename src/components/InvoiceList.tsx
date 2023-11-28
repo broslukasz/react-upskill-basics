@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import { useInvoiceList } from './use-invoice-list';
+import type { IInvoiceForm } from './Models/InvoiceForm.interface';
 
 function createData(invoiceNumber: string, created: string, validUntil: string, amount: number, actions: null) {
   return { invoiceNumber, created, validUntil, amount, actions };
@@ -26,7 +27,7 @@ const rows = [
 export default function InvoiceList() {
   const { data, error, status } = useInvoiceList();
 
-  console.log('response', data, error, status);
+  const rows2 = data as IInvoiceForm[];
 
   return (
     <Grid container spacing={2} p={4} direction={'column'} mb={0}>
@@ -42,14 +43,14 @@ export default function InvoiceList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {rows2.map((row) => (
               <TableRow key={row.invoiceNumber} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell component="th" scope="row">
-                  {row.invoiceNumber}
+                  {row.id}
                 </TableCell>
-                <TableCell align="right">{row.created}</TableCell>
+                <TableCell align="right">{row.createdAt}</TableCell>
                 <TableCell align="right">{row.validUntil}</TableCell>
-                <TableCell align="right">{row.amount}</TableCell>
+                <TableCell align="right">{row.items.reduce((a, b) => a + b.amount, 0)}</TableCell>
                 <TableCell align="right">
                   <IconButton aria-label="delete">
                     <EditIcon />

@@ -32,7 +32,7 @@ export default function AmountForm({ register, control, errors }: AmountsProps) 
               label="Name"
               variant="standard"
               fullWidth
-              error={!!errors?.amounts?.[index]?.name}
+              error={!!errors?.items?.[index]?.name}
             />
           </Grid>
           <Grid item xs={1.2}>
@@ -45,7 +45,7 @@ export default function AmountForm({ register, control, errors }: AmountsProps) 
               label="Amount"
               variant="standard"
               fullWidth
-              error={!!errors?.amounts?.[index]?.amount}
+              error={!!errors?.items?.[index]?.amount}
             />
           </Grid>
           <Grid item xs={1.2}>
@@ -56,7 +56,7 @@ export default function AmountForm({ register, control, errors }: AmountsProps) 
               label="Unit"
               variant="standard"
               fullWidth
-              error={!!errors?.amounts?.[index]?.unit?.message}
+              error={!!errors?.items?.[index]?.unit?.message}
             />
           </Grid>
           <Grid item xs={1.2}>
@@ -68,7 +68,7 @@ export default function AmountForm({ register, control, errors }: AmountsProps) 
               label="Tax"
               variant="standard"
               fullWidth
-              error={!!errors?.amounts?.[index]?.tax}
+              error={!!errors?.items?.[index]?.tax}
             />
           </Grid>
           <Grid item xs={1.2}>
@@ -80,7 +80,7 @@ export default function AmountForm({ register, control, errors }: AmountsProps) 
               label="Price"
               variant="standard"
               fullWidth
-              error={!!errors?.amounts?.[index]?.price}
+              error={!!errors?.items?.[index]?.price}
             />
           </Grid>
           <Grid item container xs={1.2} alignItems={'center'} justifyContent={'center'}>

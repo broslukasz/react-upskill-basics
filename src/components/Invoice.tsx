@@ -12,7 +12,7 @@ import { invoiceFormSchema, type IInvoiceForm } from './Models/InvoiceForm.inter
 import AmountForm from './AmountsForm';
 import type { IPersonalDataForm } from './Models/PersonalDataForm.interface';
 import { zodResolver } from '@hookform/resolvers/zod';
-import type { IAmountsForm } from './Models/AmountsForm.interface';
+import type { IAmountsForm } from './Models/ItemsForm.interface';
 
 const amountsData: IAmountsForm = [
   {
@@ -38,11 +38,11 @@ const personalData: IPersonalDataForm = {
 
 const defaultValues: IInvoiceForm = {
   invoiceNumber: '',
-  dateFrom: null,
-  dateTo: null,
+  createdAt: null,
+  validUntil: null,
   recipient: personalData,
   sender: personalData,
-  amounts: amountsData,
+  items: amountsData,
 };
 
 export default function Invoice() {
@@ -78,7 +78,7 @@ export default function Invoice() {
                     control={control}
                     rules={{ required: true }}
                     render={({ field }) => (
-                      <DatePicker {...field} slotProps={{ textField: { error: !!errors?.dateFrom } }} />
+                      <DatePicker {...field} slotProps={{ textField: { error: !!errors?.createdAt } }} />
                     )}
                   />
                 </Grid>
@@ -88,7 +88,7 @@ export default function Invoice() {
                     control={control}
                     rules={{ required: true }}
                     render={({ field }) => (
-                      <DatePicker {...field} slotProps={{ textField: { error: !!errors?.dateTo } }} />
+                      <DatePicker {...field} slotProps={{ textField: { error: !!errors?.validUntil } }} />
                     )}
                   />
                 </Grid>

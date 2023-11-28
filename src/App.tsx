@@ -29,8 +29,6 @@ const router = createBrowserRouter([
 
 function App() {
   const [queryClient] = React.useState(() => new QueryClient());
-
-  fetch('http://localhost:4000/api/invoices');
   return (
     <QueryClientProvider client={queryClient}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>

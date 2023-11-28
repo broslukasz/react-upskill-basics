@@ -9,6 +9,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
+import { useInvoiceList } from './use-invoice-list';
 
 function createData(invoiceNumber: string, created: string, validUntil: string, amount: number, actions: null) {
   return { invoiceNumber, created, validUntil, amount, actions };
@@ -23,6 +24,10 @@ const rows = [
 ];
 
 export default function InvoiceList() {
+  const { data, error, status } = useInvoiceList();
+
+  console.log('response', data, error, status);
+
   return (
     <Grid container spacing={2} p={4} direction={'column'} mb={0}>
       <TableContainer component={Paper}>

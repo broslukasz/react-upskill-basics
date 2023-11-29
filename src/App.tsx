@@ -6,7 +6,6 @@ import '@fontsource/roboto/700.css';
 import './App.css';
 
 import InvoiceList from './components/InvoiceList';
-import Invoice from './components/Invoice';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
@@ -15,14 +14,16 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import React from 'react';
+import CreateInvoice from './components/Invoice/CreateInvoice';
+import EditInvoice from './components/Invoice/EditInvoice';
 
 const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       { path: '', element: <InvoiceList /> },
-      { path: 'add', element: <Invoice /> },
-      { path: 'edit/:id', element: <Invoice /> },
+      { path: 'add', element: <CreateInvoice /> },
+      { path: 'edit/:id', element: <EditInvoice /> },
     ],
   },
 ]);

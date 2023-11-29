@@ -6,14 +6,14 @@ export const amountsFormSchema = z.array(
     name: z.string().min(3).max(50),
     amount: z
       .number()
-      .min(5)
+      .min(0)
       .max(1000)
       .nullable()
       .refine((val) => val !== null, 'Value cannot be empty'),
-    unit: z.string().min(1).max(3),
+    unit: z.string().min(1),
     tax: z
       .number()
-      .min(5)
+      .min(0)
       .max(1000)
       .nullable()
       .refine((val) => val !== null, 'Value cannot be empty'),

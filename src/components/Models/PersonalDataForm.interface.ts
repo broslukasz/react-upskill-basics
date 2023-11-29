@@ -6,7 +6,7 @@ export const personalDataFormSchema = z.object({
   street: z.string().min(1).max(50),
   postcode: z.string().min(1).max(50),
   nip: z.string().min(1).max(50),
-  phoneNumber: z.number().nullable(),
+  phone: z.number().nullable(),
   email: z.string().email().min(1).max(50),
   bankAccount: z.string().min(1).max(50),
 });

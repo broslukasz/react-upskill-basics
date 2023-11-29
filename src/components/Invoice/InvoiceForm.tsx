@@ -7,59 +7,16 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { type SubmitHandler, useForm, Controller } from 'react-hook-form';
-import PersonalDataForm from './PersonalDataForm';
-import { invoiceFormSchema, type IInvoiceForm } from './Models/InvoiceForm.interface';
-import AmountForm from './AmountsForm';
-import type { IPersonalDataForm } from './Models/PersonalDataForm.interface';
+import PersonalDataForm from '../PersonalDataForm';
+import { invoiceFormSchema, type IInvoiceForm } from '../Models/InvoiceForm.interface';
+import AmountForm from '../AmountsForm';
 import { zodResolver } from '@hookform/resolvers/zod';
-import type { IAmountsForm } from './Models/ItemsForm.interface';
-import { useInvoice } from './get-invoice';
-import { useParams } from 'react-router-dom';
 
-const amountsData: IAmountsForm = [
-  {
-    id: Date.now().toString(),
-    name: '',
-    amount: null,
-    unit: '',
-    tax: null,
-    price: null,
-  },
-];
-
-const personalData: IPersonalDataForm = {
-  companyName: '',
-  city: '',
-  street: '',
-  postcode: '',
-  nip: '',
-  phoneNumber: null,
-  email: '',
-  bankAccount: '',
+type InvoiceProps = {
+  defaultValues: IInvoiceForm;
 };
 
-const defaultValues: IInvoiceForm = {
-  invoiceNumber: '',
-  createdAt: null,
-  validUntil: null,
-  recipient: personalData,
-  sender: personalData,
-  items: amountsData,
-};
-
-export default function Invoice() {
-  const { id } = useParams();
-  const { data } = useInvoice(id as string);
-  const invoice = data as IInvoiceForm;
-
-  if (invoice) {
-    defaultValues.createdAt = invoice.createdAt;
-    defaultValues.validUntil = invoice.validUntil;
-    defaultValues.recipient = invoice.recipient;
-    defaultValues.sender = invoice.sender;
-    defaultValues.items = invoice.items;
-  }
-
+export default function InvoiceForm({ defaultValues }: InvoiceProps) {
   const onSubmit: SubmitHandler<IInvoiceForm> = (data) => console.log(data);
 
   const {
@@ -78,17 +35,11 @@ export default function Invoice() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid item container>
             <Grid item xs={6} container>
-              <TextField
-                {...register('invoiceNumber')}
-                fullWidth
-                label="No."
-                variant="standard"
-                error={!!errors?.invoiceNumber}
-              />
+              <TextField {...register('id')} fullWidth label="No." variant="standard" error={!!errors?.invoiceNumber} />
               <Grid item container spacing={2} pt={2}>
                 <Grid item sm={6}>
                   <Controller
-                    name="dateFrom"
+                    name="createdAt"
                     control={control}
                     rules={{ required: true }}
                     render={({ field }) => (
@@ -98,7 +49,7 @@ export default function Invoice() {
                 </Grid>
                 <Grid item sm={6}>
                   <Controller
-                    name="dateTo"
+                    name="validUntil"
                     control={control}
                     rules={{ required: true }}
                     render={({ field }) => (

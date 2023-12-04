@@ -14,5 +14,5 @@ const getInvoices = ({ signal }: { signal: AbortSignal }) =>
 export const useInvoiceList = () =>
   useQuery({
     queryFn: getInvoices,
-    queryKey: ['invoices'],
+    queryKey: ['invoices', 'id'],
   });

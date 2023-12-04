@@ -5,7 +5,7 @@ import '@fontsource/roboto/700.css';
 
 import './App.css';
 
-import InvoiceList from './components/InvoiceList';
+import InvoiceList from './components/InvoiceList/InvoiceList';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';

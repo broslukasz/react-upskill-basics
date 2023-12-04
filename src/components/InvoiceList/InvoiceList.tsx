@@ -10,12 +10,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import { useInvoiceList } from './use-invoice-list';
-import type { IInvoiceForm } from './Models/InvoiceForm.interface';
+import type { IInvoiceForm } from '../Models/InvoiceForm.interface';
 import { Link } from 'react-router-dom';
-
-function createData(invoiceNumber: string, created: string, validUntil: string, amount: number, actions: null) {
-  return { invoiceNumber, created, validUntil, amount, actions };
-}
 
 export default function InvoiceList() {
   const { data } = useInvoiceList();

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import InvoiceForm from './InvoiceForm';
-import { useInvoice } from './data/get-invoice';
+import { useInvoice } from './use-invoice';
 import type { IInvoiceForm } from '../Models/InvoiceForm.interface';
 
 export default function EditInvoice() {

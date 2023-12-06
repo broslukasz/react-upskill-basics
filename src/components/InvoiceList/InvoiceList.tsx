@@ -21,7 +21,7 @@ export default function InvoiceList() {
   return (
     <Grid container spacing={2} p={4} direction={'column'} mb={0}>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 650 }} aria-label="Invoice table">
           <TableHead>
             <TableRow>
               <TableCell>No.</TableCell>
@@ -42,8 +42,8 @@ export default function InvoiceList() {
                   <TableCell align="right">{row.validUntil}</TableCell>
                   <TableCell align="right">{row.items.reduce((a, b) => a + b.amount, 0)}</TableCell>
                   <TableCell align="right">
-                    <Link to={{ pathname: `edit/${row.id}` }}>
-                      <IconButton aria-label="delete">
+                    <Link to={`edit/${row.id}`}>
+                      <IconButton aria-label="edit">
                         <EditIcon />
                       </IconButton>
                     </Link>

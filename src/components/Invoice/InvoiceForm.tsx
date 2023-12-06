@@ -35,7 +35,7 @@ export default function InvoiceForm({ defaultValues }: InvoiceProps) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid item container>
             <Grid item xs={6} container>
-              <TextField {...register('id')} fullWidth label="No." variant="standard" error={!!errors?.invoiceNumber} />
+              <TextField {...register('id')} fullWidth label="No." variant="standard" error={!!errors?.id} />
               <Grid item container spacing={2} pt={2}>
                 <Grid item sm={6}>
                   <Controller

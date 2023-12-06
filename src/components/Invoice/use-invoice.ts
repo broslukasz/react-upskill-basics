@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import type { IInvoiceForm } from '../Models/InvoiceForm.interface';
+import { invoiceFormSchema } from '../Models/InvoiceForm.interface';
 
 const getInvoice =
   (id: string) =>
@@ -12,10 +12,11 @@ const getInvoice =
 
         return res;
       })
-      .then((res) => res.json());
+      .then((res) => res.json())
+      .then((res) => invoiceFormSchema.parse(res));
 
 export const useInvoice = (id: string) =>
-  useQuery<IInvoiceForm>({
+  useQuery({
     queryFn: getInvoice(id),
     queryKey: ['invoices', 'id'],
   });

@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import type { IInvoiceForm } from '../Models/InvoiceForm.interface';
+import { invoiceFormSchema } from '../Models/InvoiceForm.interface';
+import { z } from 'zod';
 
-const getInvoices = ({ signal }: { signal: AbortSignal }) =>
+const getInvoiceList = ({ signal }: { signal: AbortSignal }) =>
   fetch('api/invoices', { signal })
     .then((res) => {
       if (res.status > 399) {
@@ -10,10 +11,11 @@ const getInvoices = ({ signal }: { signal: AbortSignal }) =>
 
       return res;
     })
-    .then((res) => res.json());
+    .then((res) => res.json())
+    .then((res) => z.array(invoiceFormSchema).parse(res));
 
 export const useInvoiceList = () =>
-  useQuery<IInvoiceForm[]>({
-    queryFn: getInvoices,
+  useQuery({
+    queryFn: getInvoiceList,
     queryKey: ['invoices'],
   });

@@ -4,13 +4,12 @@ import { amountsFormSchema as itemsFormSchema } from './ItemsForm.interface';
 
 export const invoiceFormSchema = z.object({
   id: z.string().min(1).max(100),
-  createdAt: z.coerce
-    .date()
+  createdAt: z
+    .string()
     .nullable()
     .refine((val) => val !== null, 'Value cannot be empty'),
-  validUntil: z.coerce
-    .date()
-    .max(new Date(Date.now() + 1000 * 60 * 60 * 24 * 30))
+  validUntil: z
+    .string()
     .nullable()
     .refine((val) => val !== null, 'Value cannot be empty'),
   recipient: personalDataFormSchema,

@@ -16,6 +16,16 @@ type InvoiceProps = {
   defaultValues: IInvoiceForm;
 };
 
+const parseDate = (dateString: string | null) => {
+  if (!dateString) {
+    return null;
+  }
+
+  const [year, month, day] = dateString.split('-');
+
+  return new Date(Number(year), Number(month), Number(day));
+};
+
 export default function InvoiceForm({ defaultValues }: InvoiceProps) {
   const onSubmit: SubmitHandler<IInvoiceForm> = (data) => console.log(data);
 
@@ -43,7 +53,11 @@ export default function InvoiceForm({ defaultValues }: InvoiceProps) {
                     control={control}
                     rules={{ required: true }}
                     render={({ field }) => (
-                      <DatePicker {...field} slotProps={{ textField: { error: !!errors?.createdAt } }} />
+                      <DatePicker
+                        {...field}
+                        value={parseDate(field.value)}
+                        slotProps={{ textField: { error: !!errors?.createdAt } }}
+                      />
                     )}
                   />
                 </Grid>
@@ -53,7 +67,11 @@ export default function InvoiceForm({ defaultValues }: InvoiceProps) {
                     control={control}
                     rules={{ required: true }}
                     render={({ field }) => (
-                      <DatePicker {...field} slotProps={{ textField: { error: !!errors?.validUntil } }} />
+                      <DatePicker
+                        {...field}
+                        value={parseDate(field.value)}
+                        slotProps={{ textField: { error: !!errors?.validUntil } }}
+                      />
                     )}
                   />
                 </Grid>

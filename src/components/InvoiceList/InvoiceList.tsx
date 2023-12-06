@@ -10,13 +10,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import { useInvoiceList } from './use-invoice-list';
-import type { IInvoiceForm } from '../Models/InvoiceForm.interface';
 import { Link } from 'react-router-dom';
 
 export default function InvoiceList() {
   const { data } = useInvoiceList();
 
-  const rows = (data as IInvoiceForm[]) ?? [];
+  const rows = data ?? [];
 
   return (
     <Grid container spacing={2} p={4} direction={'column'} mb={0}>

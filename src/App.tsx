@@ -28,8 +28,9 @@ const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient();
+
 function App() {
-  const [queryClient] = React.useState(() => new QueryClient());
   return (
     <QueryClientProvider client={queryClient}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>

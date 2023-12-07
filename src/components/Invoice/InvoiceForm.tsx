@@ -11,6 +11,7 @@ import PersonalDataForm from '../PersonalDataForm';
 import { invoiceFormSchema, type IInvoiceForm } from '../Models/InvoiceForm.interface';
 import AmountForm from '../AmountsForm';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { parse } from 'date-fns';
 
 type InvoiceProps = {
   defaultValues: IInvoiceForm;
@@ -21,9 +22,7 @@ const parseDate = (dateString: string | null) => {
     return null;
   }
 
-  const [year, month, day] = dateString.split('-');
-
-  return new Date(Number(year), Number(month), Number(day));
+  return new Date(parse(dateString, 'yyyy-MM-dd', new Date()));
 };
 
 export default function InvoiceForm({ defaultValues }: InvoiceProps) {

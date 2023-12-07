@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import InvoiceForm from './InvoiceForm';
 import { useInvoice } from './use-invoice';
-import { InvoiceParamsSchema } from './params.schema';
+import { invoiceParamsSchema } from './params.schema';
 
 export default function EditInvoice() {
-  const { id } = InvoiceParamsSchema.parse(useParams());
+  const { id } = invoiceParamsSchema.parse(useParams());
   const { data } = useInvoice(id);
 
   if (!data) {

@@ -1,5 +1,5 @@
 import { z } from 'zod';
 
-export const InvoiceParamsSchema = z.object({
+export const invoiceParamsSchema = z.object({
   id: z.string(),
 });

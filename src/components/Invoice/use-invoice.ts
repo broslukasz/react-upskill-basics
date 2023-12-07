@@ -18,5 +18,5 @@ const getInvoice =
 export const useInvoice = (id: string) =>
   useQuery({
     queryFn: getInvoice(id),
-    queryKey: ['invoices', 'id'],
+    queryKey: ['invoices', id],
   });

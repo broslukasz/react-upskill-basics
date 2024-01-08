@@ -13,6 +13,7 @@ import AmountForm from '../AmountsForm';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { parse } from 'date-fns';
 import { Link } from 'react-router-dom';
+import { useUpdateInvoice } from './use-update-invoice';
 
 type InvoiceProps = {
   defaultValues: IInvoiceForm;
@@ -27,7 +28,10 @@ const parseDate = (dateString: string | null) => {
 };
 
 export default function InvoiceForm({ defaultValues }: InvoiceProps) {
-  const onSubmit: SubmitHandler<IInvoiceForm> = (data) => console.log(data);
+  const { mutate } = useUpdateInvoice();
+  const onSubmit: SubmitHandler<IInvoiceForm> = (data) => {
+    mutate(data);
+  };
 
   const {
     handleSubmit,

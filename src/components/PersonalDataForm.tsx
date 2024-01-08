@@ -53,7 +53,7 @@ export default function PersonalDataForm({ register, variant, errors }: Personal
         error={!!errors[variant]?.nip}
       />
       <TextField
-        {...register(`${variant}.phone`, { required: true, valueAsNumber: true })}
+        {...register(`${variant}.phone`, { required: true })}
         id="phone"
         label="Tel"
         variant="standard"

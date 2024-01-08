@@ -73,9 +73,8 @@ export default function AmountForm({ register, control, errors }: AmountsProps) 
           </Grid>
           <Grid item xs={1.2}>
             <TextField
-              type="number"
               key={field.id}
-              {...register(`items.${index}.price`, { valueAsNumber: true })}
+              {...register(`items.${index}.price`)}
               id="price"
               label="Price"
               variant="standard"

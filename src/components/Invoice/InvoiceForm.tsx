@@ -7,45 +7,27 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { type SubmitHandler, useForm, Controller } from 'react-hook-form';
-import PersonalDataForm from './PersonalDataForm';
-import { invoiceFormSchema, type IInvoiceForm } from './Models/InvoiceForm.interface';
-import AmountForm from './AmountsForm';
-import type { IPersonalDataForm } from './Models/PersonalDataForm.interface';
+import PersonalDataForm from '../PersonalDataForm';
+import { invoiceFormSchema, type IInvoiceForm } from '../Models/InvoiceForm.interface';
+import AmountForm from '../AmountsForm';
 import { zodResolver } from '@hookform/resolvers/zod';
-import type { IAmountsForm } from './Models/AmountsForm.interface';
+import { parse } from 'date-fns';
 
-const amountsData: IAmountsForm = [
-  {
-    id: Date.now().toString(),
-    name: '',
-    amount: null,
-    unit: '',
-    tax: null,
-    price: null,
-  },
-];
-
-const personalData: IPersonalDataForm = {
-  companyName: '',
-  city: '',
-  street: '',
-  postcode: '',
-  nip: '',
-  phoneNumber: null,
-  email: '',
-  bankAccount: '',
+type InvoiceProps = {
+  defaultValues: IInvoiceForm;
 };
 
-const defaultValues: IInvoiceForm = {
-  invoiceNumber: '',
-  dateFrom: null,
-  dateTo: null,
-  recipient: personalData,
-  sender: personalData,
-  amounts: amountsData,
+const parseDate = (dateString: string | null) => {
+  if (!dateString) {
+    return null;
+  }
+
+  return new Date(parse(dateString, 'yyyy-MM-dd', new Date()));
 };
 
-export default function Invoice() {
+export default function InvoiceForm({ defaultValues }: InvoiceProps) {
+  const onSubmit: SubmitHandler<IInvoiceForm> = (data) => console.log(data);
+
   const {
     handleSubmit,
     register,
@@ -56,39 +38,39 @@ export default function Invoice() {
     resolver: zodResolver(invoiceFormSchema),
   });
 
-  const onSubmit: SubmitHandler<IInvoiceForm> = (data) => console.log(data);
-
   return (
     <>
       <Grid container spacing={2} p={4} direction={'column'} mb={12}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid item container>
             <Grid item xs={6} container>
-              <TextField
-                {...register('invoiceNumber')}
-                fullWidth
-                label="No."
-                variant="standard"
-                error={!!errors?.invoiceNumber}
-              />
+              <TextField {...register('id')} fullWidth label="No." variant="standard" error={!!errors?.id} />
               <Grid item container spacing={2} pt={2}>
                 <Grid item sm={6}>
                   <Controller
-                    name="dateFrom"
+                    name="createdAt"
                     control={control}
                     rules={{ required: true }}
                     render={({ field }) => (
-                      <DatePicker {...field} slotProps={{ textField: { error: !!errors?.dateFrom } }} />
+                      <DatePicker
+                        {...field}
+                        value={parseDate(field.value)}
+                        slotProps={{ textField: { error: !!errors?.createdAt } }}
+                      />
                     )}
                   />
                 </Grid>
                 <Grid item sm={6}>
                   <Controller
-                    name="dateTo"
+                    name="validUntil"
                     control={control}
                     rules={{ required: true }}
                     render={({ field }) => (
-                      <DatePicker {...field} slotProps={{ textField: { error: !!errors?.dateTo } }} />
+                      <DatePicker
+                        {...field}
+                        value={parseDate(field.value)}
+                        slotProps={{ textField: { error: !!errors?.validUntil } }}
+                      />
                     )}
                   />
                 </Grid>

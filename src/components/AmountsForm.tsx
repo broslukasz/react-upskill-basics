@@ -17,7 +17,7 @@ type AmountsProps = {
 export default function AmountForm({ register, control, errors }: AmountsProps) {
   const { fields, remove, append } = useFieldArray<IInvoiceForm>({
     control,
-    name: 'amounts',
+    name: 'items',
   });
 
   return (
@@ -28,11 +28,11 @@ export default function AmountForm({ register, control, errors }: AmountsProps) 
             <TextField
               id="name"
               key={field.id}
-              {...register(`amounts.${index}.name`)}
+              {...register(`items.${index}.name`)}
               label="Name"
               variant="standard"
               fullWidth
-              error={!!errors?.amounts?.[index]?.name}
+              error={!!errors?.items?.[index]?.name}
             />
           </Grid>
           <Grid item xs={1.2}>
@@ -40,47 +40,47 @@ export default function AmountForm({ register, control, errors }: AmountsProps) 
               type="number"
               // ToDo Nie podpowiada składni po index
               key={field.id}
-              {...register(`amounts.${index}.amount`, { valueAsNumber: true })}
+              {...register(`items.${index}.amount`, { valueAsNumber: true })}
               id="amount"
               label="Amount"
               variant="standard"
               fullWidth
-              error={!!errors?.amounts?.[index]?.amount}
+              error={!!errors?.items?.[index]?.amount}
             />
           </Grid>
           <Grid item xs={1.2}>
             <TextField
               id="unit"
               key={field.id}
-              {...register(`amounts.${index}.unit`)}
+              {...register(`items.${index}.unit`)}
               label="Unit"
               variant="standard"
               fullWidth
-              error={!!errors?.amounts?.[index]?.unit?.message}
+              error={!!errors?.items?.[index]?.unit?.message}
             />
           </Grid>
           <Grid item xs={1.2}>
             <TextField
               type="number"
               key={field.id}
-              {...register(`amounts.${index}.tax`, { valueAsNumber: true })}
+              {...register(`items.${index}.tax`, { valueAsNumber: true })}
               id="tax"
               label="Tax"
               variant="standard"
               fullWidth
-              error={!!errors?.amounts?.[index]?.tax}
+              error={!!errors?.items?.[index]?.tax}
             />
           </Grid>
           <Grid item xs={1.2}>
             <TextField
               type="number"
               key={field.id}
-              {...register(`amounts.${index}.price`, { valueAsNumber: true })}
+              {...register(`items.${index}.price`, { valueAsNumber: true })}
               id="price"
               label="Price"
               variant="standard"
               fullWidth
-              error={!!errors?.amounts?.[index]?.price}
+              error={!!errors?.items?.[index]?.price}
             />
           </Grid>
           <Grid item container xs={1.2} alignItems={'center'} justifyContent={'center'}>

@@ -29,9 +29,7 @@ const parseDate = (dateString: string | null) => {
 
 export default function InvoiceForm({ defaultValues }: InvoiceProps) {
   const { mutate } = useUpdateInvoice();
-  const onSubmit: SubmitHandler<IInvoiceForm> = (data) => {
-    mutate(data);
-  };
+  const onSubmit: SubmitHandler<IInvoiceForm> = (data) => mutate(data);
 
   const {
     handleSubmit,

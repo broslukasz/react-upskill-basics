@@ -15,6 +15,7 @@ export const invoiceFormSchema = z.object({
   recipient: personalDataFormSchema,
   sender: personalDataFormSchema,
   items: itemsFormSchema,
+  name: z.string(),
 });
 
 export type IInvoiceForm = z.infer<typeof invoiceFormSchema>;

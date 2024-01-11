@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { IInvoiceForm } from '../Models/InvoiceForm.interface';
 import { invoiceFormSchema } from '../Models/InvoiceForm.interface';
+import { NotificationContext } from '../../App';
+import * as React from 'react';
 
 const updateInvoice = (data: IInvoiceForm) =>
   fetch(`/api/invoices/${data.id}`, {
@@ -20,9 +22,13 @@ const updateInvoice = (data: IInvoiceForm) =>
 
 export const useUpdateInvoice = () => {
   const queryClient = useQueryClient();
+  const { notification, setNotification } = React.useContext(NotificationContext);
 
   return useMutation({
     mutationFn: updateInvoice,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['invoices'] }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['invoices'] });
+      setNotification({ type: 'Success', message: 'Success!! :)' });
+    },
   });
 };

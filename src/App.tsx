@@ -16,6 +16,9 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import CreateInvoice from './components/Invoice/CreateInvoice';
 import EditInvoice from './components/Invoice/EditInvoice';
 
+import * as React from 'react';
+import { SnackbarSuccess } from './components/Snackbars/SnackbarSuccess';
+
 const router = createBrowserRouter([
   {
     element: <Layout />,
@@ -28,15 +31,20 @@ const router = createBrowserRouter([
 ]);
 
 const queryClient = new QueryClient();
+export const NotificationContext = React.createContext({});
 
 function App() {
+  const [notification, setNotification] = React.useState({ type: '', message: '' });
   return (
-    <QueryClientProvider client={queryClient}>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools></ReactQueryDevtools>
-      </LocalizationProvider>
-    </QueryClientProvider>
+    <NotificationContext.Provider value={{ notification, setNotification }}>
+      {notification.type === 'success' && <SnackbarSuccess />}
+      <QueryClientProvider client={queryClient}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <RouterProvider router={router} />
+          <ReactQueryDevtools></ReactQueryDevtools>
+        </LocalizationProvider>
+      </QueryClientProvider>
+    </NotificationContext.Provider>
   );
 }
 

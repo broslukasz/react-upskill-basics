@@ -28,7 +28,7 @@ export const useUpdateInvoice = () => {
     mutationFn: updateInvoice,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['invoices'] });
-      setNotification({ type: 'Success', message: 'Success!! :)' });
+      setNotification({ type: 'success', message: notification.message });
     },
   });
 };

@@ -38,6 +38,7 @@ function App() {
   return (
     <NotificationContext.Provider value={{ notification, setNotification }}>
       {notification.type === 'success' && <SnackbarSuccess />}
+      {notification.type === 'error' && <SnackbarSuccess />}
       <QueryClientProvider client={queryClient}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <RouterProvider router={router} />

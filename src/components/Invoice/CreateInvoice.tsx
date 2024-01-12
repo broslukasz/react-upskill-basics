@@ -32,6 +32,7 @@ const defaultValues: IInvoiceForm = {
   recipient: personalData,
   sender: personalData,
   items: amountsData,
+  name: '',
 };
 
 export default function CreateInvoice() {

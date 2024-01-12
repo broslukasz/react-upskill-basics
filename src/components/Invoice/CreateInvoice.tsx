@@ -2,12 +2,13 @@ import InvoiceForm from './InvoiceForm';
 import type { IInvoiceForm } from '../Models/Form/InvoiceForm.interface';
 import type { IPersonalDataForm } from '../Models/Form/PersonalDataForm.interface';
 import type { IAmountsForm } from '../Models/Form/ItemsForm.interface';
+import { v4 as uuidv4 } from 'uuid';
 
 const amountsData: IAmountsForm = [
   {
     id: Date.now().toString(),
     name: '',
-    amount: null,
+    amount: 0,
     unit: '',
     tax: null,
     price: null,
@@ -26,15 +27,15 @@ const personalData: IPersonalDataForm = {
 };
 
 const defaultValues: IInvoiceForm = {
-  id: '',
-  createdAt: null,
-  validUntil: null,
+  id: uuidv4(),
+  createdAt: '',
+  validUntil: '',
   recipient: personalData,
   sender: personalData,
   items: amountsData,
-  name: '',
+  name: 'My Company Invoice',
 };
 
 export default function CreateInvoice() {
-  return <InvoiceForm defaultValues={defaultValues}></InvoiceForm>;
+  return <InvoiceForm isNew={true} defaultValues={defaultValues}></InvoiceForm>;
 }

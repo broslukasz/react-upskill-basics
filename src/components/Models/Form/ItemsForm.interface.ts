@@ -18,8 +18,6 @@ export const amountsFormSchema = z.array(
       .refine((val) => val !== null, 'Value cannot be empty'),
     price: z
       .string()
-      .min(5)
-      .max(1000)
       .nullable()
       .refine((val) => val !== null, 'Value cannot be empty'),
   }),

@@ -11,7 +11,7 @@ import PersonalDataForm from '../PersonalDataForm';
 import { invoiceFormSchema, type IInvoiceForm } from '../Models/Form/InvoiceForm.interface';
 import AmountForm from '../AmountsForm';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { parse } from 'date-fns';
+import { format, parse } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { useUpdateInvoice } from './use-update-invoice';
 
@@ -20,11 +20,7 @@ type InvoiceProps = {
 };
 
 const parseDate = (dateString: string | null) => {
-  if (!dateString) {
-    return null;
-  }
-
-  return new Date(parse(dateString, 'yyyy-MM-dd', new Date()));
+  return dateString ? parse(dateString, 'yyyy-MM-dd', new Date()) : null;
 };
 
 export default function InvoiceForm({ defaultValues }: InvoiceProps) {
@@ -40,6 +36,8 @@ export default function InvoiceForm({ defaultValues }: InvoiceProps) {
     defaultValues,
     resolver: zodResolver(invoiceFormSchema),
   });
+
+  console.log(errors.createdAt);
 
   return (
     <>
@@ -59,6 +57,7 @@ export default function InvoiceForm({ defaultValues }: InvoiceProps) {
                         {...field}
                         value={parseDate(field.value)}
                         slotProps={{ textField: { error: !!errors?.createdAt } }}
+                        onChange={(date) => field.onChange(format(date as Date, 'yyyy-MM-dd'))}
                       />
                     )}
                   />
@@ -73,6 +72,7 @@ export default function InvoiceForm({ defaultValues }: InvoiceProps) {
                         {...field}
                         value={parseDate(field.value)}
                         slotProps={{ textField: { error: !!errors?.validUntil } }}
+                        onChange={(date) => field.onChange(format(date as Date, 'yyyy-MM-dd'))}
                       />
                     )}
                   />

@@ -2,7 +2,6 @@ import InvoiceForm from './InvoiceForm';
 import type { IInvoiceForm } from '../Models/Form/InvoiceForm.interface';
 import type { IPersonalDataForm } from '../Models/Form/PersonalDataForm.interface';
 import type { IAmountsForm } from '../Models/Form/ItemsForm.interface';
-import { v4 as uuidv4 } from 'uuid';
 
 const amountsData: IAmountsForm = [
   {
@@ -27,7 +26,6 @@ const personalData: IPersonalDataForm = {
 };
 
 const defaultValues: IInvoiceForm = {
-  id: uuidv4(),
   createdAt: '',
   validUntil: '',
   recipient: personalData,

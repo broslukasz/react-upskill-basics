@@ -5,8 +5,8 @@ import { NotificationContext } from '../../App';
 import * as React from 'react';
 
 const createInvoice = (data: IInvoiceForm) =>
-  fetch(`/api/invoices/${data.id}`, {
-    method: 'PUT',
+  fetch(`/api/invoices`, {
+    method: 'POST',
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' },
   })

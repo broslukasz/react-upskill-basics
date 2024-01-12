@@ -5,7 +5,6 @@ import type { IAmountsForm } from '../Models/Form/ItemsForm.interface';
 
 const amountsData: IAmountsForm = [
   {
-    id: Date.now().toString(),
     name: '',
     amount: 0,
     unit: '',

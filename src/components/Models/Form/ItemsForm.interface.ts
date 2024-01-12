@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const amountsFormSchema = z.array(
   z.object({
-    id: z.string().max(50),
+    id: z.string().optional(),
     name: z.string().min(3).max(50),
     amount: z
       .number()

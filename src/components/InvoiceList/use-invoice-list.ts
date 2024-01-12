@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { invoiceFormSchema } from '../Models/InvoiceForm.interface';
+import { invoiceFormSchema } from '../Models/Form/InvoiceForm.interface';
 import { z } from 'zod';
 
 const getInvoiceList = ({ signal }: { signal: AbortSignal }) =>

@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
-import type { IInvoiceForm } from './Models/InvoiceForm.interface';
+import type { IInvoiceForm } from './Models/Form/InvoiceForm.interface';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { type UseFormRegister, type Control, useFieldArray, type FieldErrors } from 'react-hook-form';

@@ -9,7 +9,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props,
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export const SnackbarSuccess = ({ message }: AppSnackbarProps) => {
+export const SnackbarError = ({ message }: AppSnackbarProps) => {
   const [open, setOpen] = React.useState(true);
   const { notification, setNotification } = React.useContext(NotificationContext);
 
@@ -23,8 +23,8 @@ export const SnackbarSuccess = ({ message }: AppSnackbarProps) => {
       autoHideDuration={3000}
       message="message"
     >
-      <Alert severity="success" sx={{ width: '100%' }}>
-        {message || 'This is a success :)'}
+      <Alert severity="error" sx={{ width: '100%' }}>
+        {message || 'This is an error :)'}
       </Alert>
     </Snackbar>
   );

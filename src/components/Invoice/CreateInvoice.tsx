@@ -1,7 +1,7 @@
 import InvoiceForm from './InvoiceForm';
-import type { IInvoiceForm } from '../Models/InvoiceForm.interface';
-import type { IPersonalDataForm } from '../Models/PersonalDataForm.interface';
-import type { IAmountsForm } from '../Models/ItemsForm.interface';
+import type { IInvoiceForm } from '../Models/Form/InvoiceForm.interface';
+import type { IPersonalDataForm } from '../Models/Form/PersonalDataForm.interface';
+import type { IAmountsForm } from '../Models/Form/ItemsForm.interface';
 
 const amountsData: IAmountsForm = [
   {

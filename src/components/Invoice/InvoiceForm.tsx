@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { type SubmitHandler, useForm, Controller } from 'react-hook-form';
 import PersonalDataForm from '../PersonalDataForm';
-import { invoiceFormSchema, type IInvoiceForm } from '../Models/InvoiceForm.interface';
+import { invoiceFormSchema, type IInvoiceForm } from '../Models/Form/InvoiceForm.interface';
 import AmountForm from '../AmountsForm';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { parse } from 'date-fns';

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import type { IInvoiceForm } from '../Models/InvoiceForm.interface';
-import { invoiceFormSchema } from '../Models/InvoiceForm.interface';
+import type { IInvoiceForm } from '../Models/Form/InvoiceForm.interface';
+import { invoiceFormSchema } from '../Models/Form/InvoiceForm.interface';
 import { NotificationContext } from '../../App';
 import * as React from 'react';
 
@@ -28,7 +28,10 @@ export const useUpdateInvoice = () => {
     mutationFn: updateInvoice,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['invoices'] });
-      setNotification({ type: 'success', message: notification.message });
+      setNotification({ type: 'success', message: 'Successfully saved :)' });
+    },
+    onError: () => {
+      setNotification({ type: 'error', message: 'Error while saved :( Try Again ;)' });
     },
   });
 };

@@ -18,6 +18,7 @@ import EditInvoice from './components/Invoice/EditInvoice';
 
 import * as React from 'react';
 import { SnackbarSuccess } from './components/Snackbars/SnackbarSuccess';
+import { SnackbarError } from './components/Snackbars/SnackbarError';
 
 const router = createBrowserRouter([
   {
@@ -37,8 +38,8 @@ function App() {
   const [notification, setNotification] = React.useState({ type: '', message: '' });
   return (
     <NotificationContext.Provider value={{ notification, setNotification }}>
-      {notification.type === 'success' && <SnackbarSuccess />}
-      {notification.type === 'error' && <SnackbarSuccess />}
+      {notification.type === 'success' && <SnackbarSuccess message={notification.message} />}
+      {notification.type === 'error' && <SnackbarError message={notification.message} />}
       <QueryClientProvider client={queryClient}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <RouterProvider router={router} />

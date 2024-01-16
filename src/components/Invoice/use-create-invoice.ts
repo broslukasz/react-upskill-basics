@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { IInvoiceForm } from '../Models/Form/InvoiceForm.interface';
 import { invoiceFormSchema } from '../Models/Form/InvoiceForm.interface';
-import { NotificationContext } from '../../App';
-import * as React from 'react';
+import { useNotificationContext } from '../NotificationContext/NotificationContext';
 
 const createInvoice = (data: IInvoiceForm) =>
   fetch(`/api/invoices`, {
@@ -22,7 +21,7 @@ const createInvoice = (data: IInvoiceForm) =>
 
 export const useCreateInvoice = () => {
   const queryClient = useQueryClient();
-  const { notification, setNotification } = React.useContext(NotificationContext);
+  const { setNotification } = useNotificationContext();
 
   return useMutation({
     mutationFn: createInvoice,

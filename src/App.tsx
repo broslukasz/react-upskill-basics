@@ -15,10 +15,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import CreateInvoice from './components/Invoice/CreateInvoice';
 import EditInvoice from './components/Invoice/EditInvoice';
-
-import * as React from 'react';
-import { SnackbarSuccess } from './components/Snackbars/SnackbarSuccess';
-import { SnackbarError } from './components/Snackbars/SnackbarError';
+import NotificationContextComponent from './components/NotificationContext/NotificationContext';
 
 const router = createBrowserRouter([
   {
@@ -32,21 +29,17 @@ const router = createBrowserRouter([
 ]);
 
 const queryClient = new QueryClient();
-export const NotificationContext = React.createContext({});
 
 function App() {
-  const [notification, setNotification] = React.useState({ type: '', message: '' });
   return (
-    <NotificationContext.Provider value={{ notification, setNotification }}>
-      {notification.type === 'success' && <SnackbarSuccess message={notification.message} />}
-      {notification.type === 'error' && <SnackbarError message={notification.message} />}
+    <NotificationContextComponent>
       <QueryClientProvider client={queryClient}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <RouterProvider router={router} />
           <ReactQueryDevtools></ReactQueryDevtools>
         </LocalizationProvider>
       </QueryClientProvider>
-    </NotificationContext.Provider>
+    </NotificationContextComponent>
   );
 }
 

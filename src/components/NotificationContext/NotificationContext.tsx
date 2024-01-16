@@ -4,7 +4,7 @@ import { SnackbarError } from '../Snackbars/SnackbarError';
 
 type NotificationContextType = {
   notification: { type: string; message: string };
-  setNotification: React.Dispatch<React.SetStateAction<{ type: string; message: string }>>;
+  setNotification: React.Dispatch<React.SetStateAction<{ type: string; message: string }>> | undefined;
 };
 
 const NotificationContext = React.createContext<NotificationContextType>({
@@ -12,21 +12,20 @@ const NotificationContext = React.createContext<NotificationContextType>({
     type: '',
     message: '',
   },
-  // Empty function es lint :( How to avoid
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setNotification: () => {},
+  setNotification: undefined,
 });
 
-export const useNotificationContext = (): NotificationContextType => {
+export const useNotifications = (): NotificationContextType => {
   const context = React.useContext(NotificationContext);
 
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useNotificationContext must be used within a NotificationProvider');
   }
 
   return context;
 };
 
+// ToDo type childrenn
 export default function NotificationContextComponent(props: { children: any }) {
   const [notification, setNotification] = React.useState({ type: '', message: '' });
 

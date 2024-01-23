@@ -28,6 +28,8 @@ export const useCreateInvoice = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['invoices'] });
       setNotification({ type: 'success', message: 'Successfully created :)' });
+      // TODO Why setNotification is underlined "Cannot invoke an object which is possibly 'undefined'"
+      // TODO How to navigate from here ??
     },
     onError: () => {
       setNotification({ type: 'error', message: 'Error during invoic creation :( Try Again ;)' });

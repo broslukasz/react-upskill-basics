@@ -16,15 +16,15 @@ import { Link } from 'react-router-dom';
 
 type InvoiceProps = {
   defaultValues: IInvoiceForm;
+  // TODO how to type this?
   onFormSave: () => any;
-  isNew?: boolean;
 };
 
 const parseDate = (dateString: string | null) => {
   return dateString ? parse(dateString, 'yyyy-MM-dd', new Date()) : null;
 };
 
-export default function InvoiceForm({ defaultValues, isNew, onFormSave }: InvoiceProps) {
+export default function InvoiceForm({ defaultValues, onFormSave }: InvoiceProps) {
   const { mutate } = onFormSave();
   const onSubmit: SubmitHandler<IInvoiceForm> = (data) => mutate(data);
 
@@ -44,9 +44,7 @@ export default function InvoiceForm({ defaultValues, isNew, onFormSave }: Invoic
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid item container>
             <Grid item xs={6} container>
-              {!isNew && (
-                <TextField {...register('id')} fullWidth label="No." variant="standard" error={!!errors?.id} />
-              )}
+              <TextField disabled {...register('id')} fullWidth label="No." variant="standard" error={!!errors?.id} />
               <Grid item container spacing={2} pt={2}>
                 <Grid item sm={6}>
                   <Controller

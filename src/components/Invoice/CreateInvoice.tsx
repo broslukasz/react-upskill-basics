@@ -2,6 +2,7 @@ import InvoiceForm from './InvoiceForm';
 import type { IInvoiceForm } from '../Models/Form/InvoiceForm.interface';
 import type { IPersonalDataForm } from '../Models/Form/PersonalDataForm.interface';
 import type { IAmountsForm } from '../Models/Form/ItemsForm.interface';
+import { useCreateInvoice } from './use-create-invoice';
 
 const amountsData: IAmountsForm = [
   {
@@ -34,5 +35,5 @@ const defaultValues: IInvoiceForm = {
 };
 
 export default function CreateInvoice() {
-  return <InvoiceForm isNew={true} defaultValues={defaultValues}></InvoiceForm>;
+  return <InvoiceForm isNew={true} onFormSave={useCreateInvoice} defaultValues={defaultValues}></InvoiceForm>;
 }

@@ -28,10 +28,14 @@ export const useUpdateInvoice = () => {
     mutationFn: updateInvoice,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['invoices'] });
-      setNotification({ type: 'success', message: 'Successfully saved :)' });
+        if (setNotification) {
+            setNotification({type: 'success', message: 'Successfully saved :)'});
+        }
     },
     onError: () => {
-      setNotification({ type: 'error', message: 'Error while saved :( Try Again ;)' });
+        if (setNotification) {
+            setNotification({type: 'error', message: 'Error while saved :( Try Again ;)'});
+        }
     },
   });
 };

@@ -24,6 +24,14 @@ const parseDate = (dateString: string | null) => {
   return dateString ? parse(dateString, 'yyyy-MM-dd', new Date()) : null;
 };
 
+const onDateChange = (field: any) => (date: Date | null) => {
+  if (!date) {
+    return null;
+  }
+
+  return field.onChange(format(date, 'yyyy-MM-dd'));
+};
+
 export default function InvoiceForm({ defaultValues, onFormSave }: InvoiceProps) {
   const { mutate } = onFormSave();
   const onSubmit: SubmitHandler<IInvoiceForm> = (data) => mutate(data);
@@ -56,7 +64,7 @@ export default function InvoiceForm({ defaultValues, onFormSave }: InvoiceProps)
                         {...field}
                         value={parseDate(field.value)}
                         slotProps={{ textField: { error: !!errors?.createdAt } }}
-                        onChange={(date) => field.onChange(format(date as Date, 'yyyy-MM-dd'))}
+                        onChange={onDateChange(field)}
                       />
                     )}
                   />
@@ -71,7 +79,7 @@ export default function InvoiceForm({ defaultValues, onFormSave }: InvoiceProps)
                         {...field}
                         value={parseDate(field.value)}
                         slotProps={{ textField: { error: !!errors?.validUntil } }}
-                        onChange={(date) => field.onChange(format(date as Date, 'yyyy-MM-dd'))}
+                        onChange={onDateChange(field)}
                       />
                     )}
                   />

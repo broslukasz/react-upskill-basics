@@ -36,7 +36,7 @@ export const useCreateInvoice = () => {
     },
     onError: () => {
         if (setNotification) {
-            setNotification({type: 'error', message: 'Error during invoic creation :( Try Again ;)'});
+            setNotification({type: 'error', message: 'Error during invoice creation :( Try Again ;)'});
         }
     },
   });

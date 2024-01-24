@@ -18,7 +18,9 @@ export const SnackbarError = ({ message }: AppSnackbarProps) => {
       open={open}
       onClose={() => {
         setOpen(false);
-        setNotification({ type: '', message: '' });
+          if (setNotification) {
+              setNotification({type: '', message: ''});
+          }
       }}
       autoHideDuration={3000}
       message="message"

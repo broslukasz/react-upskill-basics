@@ -10,14 +10,12 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props,
 });
 
 export const SnackbarError = ({ message }: AppSnackbarProps) => {
-  const [open, setOpen] = React.useState(true);
-  const { setNotification } = useNotifications();
+  const { notification, setNotification } = useNotifications();
 
   return (
     <Snackbar
-      open={open}
+    open={notification.type === 'error'}
       onClose={() => {
-        setOpen(false);
           if (setNotification) {
               setNotification({type: '', message: ''});
           }
@@ -26,7 +24,7 @@ export const SnackbarError = ({ message }: AppSnackbarProps) => {
       message="message"
     >
       <Alert severity="error" sx={{ width: '100%' }}>
-        {message || 'This is an error :)'}
+        { message }
       </Alert>
     </Snackbar>
   );

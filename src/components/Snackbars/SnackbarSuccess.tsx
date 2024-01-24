@@ -10,21 +10,21 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props,
 });
 
 export const SnackbarSuccess = ({ message }: AppSnackbarProps) => {
-  const [open, setOpen] = React.useState(true);
-  const { setNotification } = useNotifications();
+  const { notification, setNotification } = useNotifications();
 
   return (
     <Snackbar
-      open={open}
+        open={notification.type === 'success'}
       onClose={() => {
-        setOpen(false);
-        setNotification({ type: '', message: '' });
+          if (setNotification) {
+              setNotification({type: '', message: ''});
+          }
       }}
       autoHideDuration={3000}
       message="message"
     >
       <Alert severity="success" sx={{ width: '100%' }}>
-        {message || 'This is a success :)'}
+        { message }
       </Alert>
     </Snackbar>
   );

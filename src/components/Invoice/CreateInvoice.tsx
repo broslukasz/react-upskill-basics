@@ -3,6 +3,7 @@ import type { IInvoiceForm } from '../Models/Form/InvoiceForm.interface';
 import type { IPersonalDataForm } from '../Models/Form/PersonalDataForm.interface';
 import type { IAmountsForm } from '../Models/Form/ItemsForm.interface';
 import { useCreateInvoice } from './use-create-invoice';
+import type { SubmitHandler } from 'react-hook-form';
 
 const amountsData: IAmountsForm = [
   {
@@ -35,5 +36,8 @@ const defaultValues: IInvoiceForm = {
 };
 
 export default function CreateInvoice() {
-  return <InvoiceForm onFormSave={useCreateInvoice} defaultValues={defaultValues}></InvoiceForm>;
+  const { mutate } = useCreateInvoice();
+  const onSubmit: SubmitHandler<IInvoiceForm> = (data) => mutate(data);
+
+  return <InvoiceForm onSubmit={onSubmit} defaultValues={defaultValues}></InvoiceForm>;
 }

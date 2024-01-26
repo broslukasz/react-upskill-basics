@@ -16,8 +16,7 @@ import { Link } from 'react-router-dom';
 
 type InvoiceProps = {
   defaultValues: IInvoiceForm;
-  // TODO how to type this?
-  onFormSave: () => any;
+  onSubmit: (form: IInvoiceForm) => void;
 };
 
 const parseDate = (dateString: string | null) => {
@@ -32,10 +31,7 @@ const onDateChange = (field: any) => (date: Date | null) => {
   return field.onChange(format(date, 'yyyy-MM-dd'));
 };
 
-export default function InvoiceForm({ defaultValues, onFormSave }: InvoiceProps) {
-  const { mutate } = onFormSave();
-  const onSubmit: SubmitHandler<IInvoiceForm> = (data) => mutate(data);
-
+export default function InvoiceForm({ defaultValues, onSubmit }: InvoiceProps) {
   const {
     handleSubmit,
     register,

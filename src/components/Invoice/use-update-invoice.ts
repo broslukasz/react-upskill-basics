@@ -26,8 +26,8 @@ export const useUpdateInvoice = () => {
 
   return useMutation({
     mutationFn: updateInvoice,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['invoices'] });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['invoices'] });
       setNotification({ type: 'success', message: 'Successfully saved :)' });
     },
     onError: () => {

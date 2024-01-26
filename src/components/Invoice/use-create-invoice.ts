@@ -27,13 +27,13 @@ export const useCreateInvoice = () => {
 
   return useMutation({
     mutationFn: createInvoice,
-    onSuccess: (response) => {
-      queryClient.invalidateQueries({ queryKey: ['invoices'] });
-        setNotification({type: 'success', message: 'Successfully created :)'});
-        navigate(`/edit/${response.id}`)
+    onSuccess: async (response) => {
+      await queryClient.invalidateQueries({ queryKey: ['invoices'] });
+      setNotification({ type: 'success', message: 'Successfully created :)' });
+      navigate(`/edit/${response.id}`);
     },
     onError: () => {
-        setNotification({type: 'error', message: 'Error during invoice creation :( Try Again ;)'});
+      setNotification({ type: 'error', message: 'Error during invoice creation :( Try Again ;)' });
     },
   });
 };

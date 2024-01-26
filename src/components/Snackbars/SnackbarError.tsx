@@ -3,7 +3,7 @@ import type { AlertProps } from '@mui/material/Alert';
 import MuiAlert from '@mui/material/Alert';
 import * as React from 'react';
 import type { AppSnackbarProps } from '../Models/SnackbarProps.interface';
-import { useNotifications } from '../NotificationContext/NotificationContext';
+import { useNotifications } from '../NotificationProvider/NotificationProvider';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;

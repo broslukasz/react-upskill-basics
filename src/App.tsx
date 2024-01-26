@@ -15,7 +15,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import CreateInvoice from './components/Invoice/CreateInvoice';
 import EditInvoice from './components/Invoice/EditInvoice';
-import NotificationContextComponent from './components/NotificationContext/NotificationContext';
+import NotificationProvider from './components/NotificationProvider/NotificationProvider';
 
 const router = createBrowserRouter([
   {
@@ -32,14 +32,14 @@ const queryClient = new QueryClient();
 
 function App() {
   return (
-    <NotificationContextComponent>
+    <NotificationProvider>
       <QueryClientProvider client={queryClient}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <RouterProvider router={router} />
           <ReactQueryDevtools></ReactQueryDevtools>
         </LocalizationProvider>
       </QueryClientProvider>
-    </NotificationContextComponent>
+    </NotificationProvider>
   );
 }
 

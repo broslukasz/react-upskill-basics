@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { IInvoiceForm } from '../Models/Form/InvoiceForm.interface';
 import { invoiceFormSchema } from '../Models/Form/InvoiceForm.interface';
 
-import { useNotifications } from '../NotificationContext/NotificationContext';
+import { useNotifications } from '../NotificationProvider/NotificationProvider';
 
 const updateInvoice = (data: IInvoiceForm) =>
   fetch(`/api/invoices/${data.id}`, {

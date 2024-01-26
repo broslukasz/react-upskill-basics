@@ -20,7 +20,7 @@ export const useNotifications = (): NotificationContextType => {
 };
 
 // ToDo type childrenn
-export default function NotificationContextComponent(props: { children: any }) {
+export default function NotificationProvider(props: { children: any }) {
   const [notification, setNotification] = React.useState({ type: '', message: '' });
 
   return (

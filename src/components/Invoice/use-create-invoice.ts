@@ -29,15 +29,11 @@ export const useCreateInvoice = () => {
     mutationFn: createInvoice,
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ['invoices'] });
-        if (setNotification) {
-            setNotification({type: 'success', message: 'Successfully created :)'});
-        }
+        setNotification({type: 'success', message: 'Successfully created :)'});
         navigate(`/edit/${response.id}`)
     },
     onError: () => {
-        if (setNotification) {
-            setNotification({type: 'error', message: 'Error during invoice creation :( Try Again ;)'});
-        }
+        setNotification({type: 'error', message: 'Error during invoice creation :( Try Again ;)'});
     },
   });
 };

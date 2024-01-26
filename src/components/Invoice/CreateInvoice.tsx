@@ -35,5 +35,5 @@ const defaultValues: IInvoiceForm = {
 };
 
 export default function CreateInvoice() {
-  return <InvoiceForm isNew={true} onFormSave={useCreateInvoice} defaultValues={defaultValues}></InvoiceForm>;
+  return <InvoiceForm onFormSave={useCreateInvoice} defaultValues={defaultValues}></InvoiceForm>;
 }

@@ -14,17 +14,15 @@ export const SnackbarSuccess = ({ message }: AppSnackbarProps) => {
 
   return (
     <Snackbar
-        open={notification.type === 'success'}
+      open={notification.type === 'success'}
       onClose={() => {
-          if (setNotification) {
-              setNotification({type: '', message: ''});
-          }
+        setNotification({ type: '', message: '' });
       }}
       autoHideDuration={3000}
       message="message"
     >
       <Alert severity="success" sx={{ width: '100%' }}>
-        { message }
+        {message}
       </Alert>
     </Snackbar>
   );

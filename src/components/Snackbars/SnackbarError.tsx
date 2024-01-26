@@ -14,17 +14,15 @@ export const SnackbarError = ({ message }: AppSnackbarProps) => {
 
   return (
     <Snackbar
-    open={notification.type === 'error'}
+      open={notification.type === 'error'}
       onClose={() => {
-          if (setNotification) {
-              setNotification({type: '', message: ''});
-          }
+        setNotification({ type: '', message: '' });
       }}
       autoHideDuration={3000}
       message="message"
     >
       <Alert severity="error" sx={{ width: '100%' }}>
-        { message }
+        {message}
       </Alert>
     </Snackbar>
   );

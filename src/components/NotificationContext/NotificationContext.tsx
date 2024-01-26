@@ -4,19 +4,13 @@ import { SnackbarError } from '../Snackbars/SnackbarError';
 
 type NotificationContextType = {
   notification: { type: string; message: string };
-  setNotification: React.Dispatch<React.SetStateAction<{ type: string; message: string }>> | undefined;
+  setNotification: React.Dispatch<React.SetStateAction<{ type: string; message: string }>>;
 };
 
-const NotificationContext = React.createContext<NotificationContextType>({
-  notification: {
-    type: '',
-    message: '',
-  },
-  setNotification: undefined,
-});
+const NotificationContext = React.createContext<NotificationContextType | undefined>(undefined);
 
 export const useNotifications = (): NotificationContextType => {
-  const context = React.useContext(NotificationContext);
+  const context = React.useContext<NotificationContextType | undefined>(NotificationContext);
 
   if (!context) {
     throw new Error('useNotificationContext must be used within a NotificationProvider');

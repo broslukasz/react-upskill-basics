@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { type SubmitHandler, useForm, Controller } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import PersonalDataForm from '../PersonalDataForm';
 import { invoiceFormSchema, type IInvoiceForm } from '../Models/Form/InvoiceForm.interface';
 import AmountForm from '../AmountsForm';

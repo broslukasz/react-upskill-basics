@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import type { ControllerRenderProps } from 'react-hook-form';
 import { useForm, Controller } from 'react-hook-form';
 import PersonalDataForm from '../PersonalDataForm';
 import { invoiceFormSchema, type IInvoiceForm } from '../Models/Form/InvoiceForm.interface';
@@ -23,13 +24,15 @@ const parseDate = (dateString: string | null) => {
   return dateString ? parse(dateString, 'yyyy-MM-dd', new Date()) : null;
 };
 
-const onDateChange = (field: any) => (date: Date | null) => {
-  if (!date) {
-    return null;
-  }
+const onDateChange =
+  <Name extends keyof IInvoiceForm>(field: ControllerRenderProps<IInvoiceForm, Name>) =>
+  (date: Date | null) => {
+    if (!date) {
+      return null;
+    }
 
-  return field.onChange(format(date, 'yyyy-MM-dd'));
-};
+    return field.onChange(format(date, 'yyyy-MM-dd'));
+  };
 
 export default function InvoiceForm({ defaultValues, onSubmit }: InvoiceProps) {
   const {

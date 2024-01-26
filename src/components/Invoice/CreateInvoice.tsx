@@ -39,5 +39,5 @@ export default function CreateInvoice() {
   const { mutate } = useCreateInvoice();
   const onSubmit: SubmitHandler<IInvoiceForm> = (data) => mutate(data);
 
-  return <InvoiceForm onSubmit={onSubmit} defaultValues={defaultValues}></InvoiceForm>;
+  return <InvoiceForm onSubmit={onSubmit} defaultValues={defaultValues} />;
 }

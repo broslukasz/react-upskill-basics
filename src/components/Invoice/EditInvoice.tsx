@@ -21,5 +21,5 @@ export default function EditInvoice() {
     return <div>Loading</div>;
   }
 
-  return <InvoiceForm onSubmit={onSubmit} defaultValues={data}></InvoiceForm>;
+  return <InvoiceForm onSubmit={onSubmit} defaultValues={data} />;
 }

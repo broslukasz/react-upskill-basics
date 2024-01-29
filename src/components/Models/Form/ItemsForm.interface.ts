@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const amountsFormSchema = z.array(
   z.object({
-    id: z.string().max(50),
+    id: z.string().optional(),
     name: z.string().min(3).max(50),
     amount: z
       .number()
@@ -14,11 +14,11 @@ export const amountsFormSchema = z.array(
       .number()
       .min(0)
       .max(1000)
+      .nullable()
       .refine((val) => val !== null, 'Value cannot be empty'),
     price: z
       .string()
-      .min(5)
-      .max(1000)
+      .nullable()
       .refine((val) => val !== null, 'Value cannot be empty'),
   }),
 );

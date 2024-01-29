@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material';
 import { type FieldErrors, type UseFormRegister } from 'react-hook-form';
-import type { IInvoiceForm } from './Models/InvoiceForm.interface';
+import type { IInvoiceForm } from './Models/Form/InvoiceForm.interface';
 
 type PersonalDataProps = {
   register: UseFormRegister<IInvoiceForm>;
@@ -53,7 +53,7 @@ export default function PersonalDataForm({ register, variant, errors }: Personal
         error={!!errors[variant]?.nip}
       />
       <TextField
-        {...register(`${variant}.phone`, { required: true, valueAsNumber: true })}
+        {...register(`${variant}.phone`, { required: true })}
         id="phone"
         label="Tel"
         variant="standard"

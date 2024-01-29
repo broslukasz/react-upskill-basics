@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
-import type { IInvoiceForm } from './Models/InvoiceForm.interface';
+import type { IInvoiceForm } from './Models/Form/InvoiceForm.interface';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { type UseFormRegister, type Control, useFieldArray, type FieldErrors } from 'react-hook-form';
@@ -73,9 +73,8 @@ export default function AmountForm({ register, control, errors }: AmountsProps) 
           </Grid>
           <Grid item xs={1.2}>
             <TextField
-              type="number"
               key={field.id}
-              {...register(`items.${index}.price`, { valueAsNumber: true })}
+              {...register(`items.${index}.price`)}
               id="price"
               label="Price"
               variant="standard"

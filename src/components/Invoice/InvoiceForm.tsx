@@ -6,28 +6,35 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { type SubmitHandler, useForm, Controller } from 'react-hook-form';
+import type { ControllerRenderProps } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import PersonalDataForm from '../PersonalDataForm';
-import { invoiceFormSchema, type IInvoiceForm } from '../Models/InvoiceForm.interface';
+import { invoiceFormSchema, type IInvoiceForm } from '../Models/Form/InvoiceForm.interface';
 import AmountForm from '../AmountsForm';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { parse } from 'date-fns';
+import { format, parse } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 type InvoiceProps = {
   defaultValues: IInvoiceForm;
+  onSubmit: (form: IInvoiceForm) => void;
 };
 
 const parseDate = (dateString: string | null) => {
-  if (!dateString) {
-    return null;
-  }
-
-  return new Date(parse(dateString, 'yyyy-MM-dd', new Date()));
+  return dateString ? parse(dateString, 'yyyy-MM-dd', new Date()) : null;
 };
 
-export default function InvoiceForm({ defaultValues }: InvoiceProps) {
-  const onSubmit: SubmitHandler<IInvoiceForm> = (data) => console.log(data);
+const onDateChange =
+  <Name extends keyof IInvoiceForm>(field: ControllerRenderProps<IInvoiceForm, Name>) =>
+  (date: Date | null) => {
+    if (!date) {
+      return null;
+    }
 
+    return field.onChange(format(date, 'yyyy-MM-dd'));
+  };
+
+export default function InvoiceForm({ defaultValues, onSubmit }: InvoiceProps) {
   const {
     handleSubmit,
     register,
@@ -44,7 +51,7 @@ export default function InvoiceForm({ defaultValues }: InvoiceProps) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid item container>
             <Grid item xs={6} container>
-              <TextField {...register('id')} fullWidth label="No." variant="standard" error={!!errors?.id} />
+              <TextField disabled {...register('id')} fullWidth label="No." variant="standard" error={!!errors?.id} />
               <Grid item container spacing={2} pt={2}>
                 <Grid item sm={6}>
                   <Controller
@@ -56,6 +63,7 @@ export default function InvoiceForm({ defaultValues }: InvoiceProps) {
                         {...field}
                         value={parseDate(field.value)}
                         slotProps={{ textField: { error: !!errors?.createdAt } }}
+                        onChange={onDateChange(field)}
                       />
                     )}
                   />
@@ -70,6 +78,7 @@ export default function InvoiceForm({ defaultValues }: InvoiceProps) {
                         {...field}
                         value={parseDate(field.value)}
                         slotProps={{ textField: { error: !!errors?.validUntil } }}
+                        onChange={onDateChange(field)}
                       />
                     )}
                   />
@@ -85,9 +94,12 @@ export default function InvoiceForm({ defaultValues }: InvoiceProps) {
               gap={2}
               sx={{ height: 'fit-content' }}
             >
-              <Button className="mr-2" variant="outlined">
-                Cancel
-              </Button>
+              <Link to="/">
+                <Button className="mr-2" variant="outlined">
+                  Cancel
+                </Button>
+              </Link>
+
               <Button variant="contained" type="submit" startIcon={<SaveIcon />}>
                 Save
               </Button>

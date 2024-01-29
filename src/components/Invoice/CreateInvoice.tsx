@@ -1,13 +1,14 @@
 import InvoiceForm from './InvoiceForm';
-import type { IInvoiceForm } from '../Models/InvoiceForm.interface';
-import type { IPersonalDataForm } from '../Models/PersonalDataForm.interface';
-import type { IAmountsForm } from '../Models/ItemsForm.interface';
+import type { IInvoiceForm } from '../Models/Form/InvoiceForm.interface';
+import type { IPersonalDataForm } from '../Models/Form/PersonalDataForm.interface';
+import type { IAmountsForm } from '../Models/Form/ItemsForm.interface';
+import { useCreateInvoice } from './use-create-invoice';
+import type { SubmitHandler } from 'react-hook-form';
 
 const amountsData: IAmountsForm = [
   {
-    id: Date.now().toString(),
     name: '',
-    amount: null,
+    amount: 0,
     unit: '',
     tax: null,
     price: null,
@@ -26,14 +27,17 @@ const personalData: IPersonalDataForm = {
 };
 
 const defaultValues: IInvoiceForm = {
-  id: '',
-  createdAt: null,
-  validUntil: null,
+  createdAt: '',
+  validUntil: '',
   recipient: personalData,
   sender: personalData,
   items: amountsData,
+  name: 'My Company Invoice',
 };
 
 export default function CreateInvoice() {
-  return <InvoiceForm defaultValues={defaultValues}></InvoiceForm>;
+  const { mutate } = useCreateInvoice();
+  const onSubmit: SubmitHandler<IInvoiceForm> = (data) => mutate(data);
+
+  return <InvoiceForm onSubmit={onSubmit} defaultValues={defaultValues} />;
 }

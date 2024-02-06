@@ -7,6 +7,7 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
+    /* Why it is wrong? */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
@@ -23,5 +24,6 @@
     "types": ["vitest/globals"]
   },
   "include": ["src", "vitest.config.ts"],
+  "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

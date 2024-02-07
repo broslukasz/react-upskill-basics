@@ -4,7 +4,7 @@ import { setupServer } from 'msw/node';
 import '@testing-library/svelte/vitest';
 import '@testing-library/jest-dom/vitest';
 
-const server = setupServer(handlers);
+const server = setupServer(...handlers);
 
 // Start server before all tests
 // eslint-disable-next-line no-undef

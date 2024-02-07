@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 
 export const INVOICE_LIST_HANDLERS = [
-  http.get('http://localhost:5173/api/invoices', () => {
+  http.get('api/invoices', () => {
     return HttpResponse.json([
       {
         id: '6e1a92c1-6ac3-43ce-8ef4-19b5938b1935',

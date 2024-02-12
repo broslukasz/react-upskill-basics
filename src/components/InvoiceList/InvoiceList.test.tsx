@@ -10,7 +10,7 @@ describe('Invoice List', () => {
   it('should have labels', async () => {
     renderWithRouter(
       <Routes>
-        <Route element=<InvoiceList /> path="/" />
+        <Route element={<InvoiceList />} path="/" />
       </Routes>,
 
       { route: '/' },
@@ -26,7 +26,7 @@ describe('Invoice List', () => {
   it('should match items number', async () => {
     renderWithRouter(
       <Routes>
-        <Route element=<InvoiceList /> path="/" />
+        <Route element={<InvoiceList />} path="/" />
       </Routes>,
 
       { route: '/' },
@@ -37,11 +37,11 @@ describe('Invoice List', () => {
 
   // ToDo it does not trigger error :(
   it('should display error on api call failed', async () => {
-    server.use(http.get('/api/invoices', () => HttpResponse.json({ error: 'error' })));
+    server.use(http.get('api/invoices', () => HttpResponse.json({ error: 'error' }, { status: 500 })));
 
     renderWithRouter(
       <Routes>
-        <Route element=<InvoiceList /> path="/" />
+        <Route element={<InvoiceList />} path="/" />
       </Routes>,
 
       { route: '/' },

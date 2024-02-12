@@ -1,10 +1,6 @@
-import { handlers } from './mocks/handlers.ts';
-import { setupServer } from 'msw/node';
-
 import '@testing-library/svelte/vitest';
 import '@testing-library/jest-dom/vitest';
-
-const server = setupServer(...handlers);
+import { server } from './setupServer';
 
 // Start server before all tests
 // eslint-disable-next-line no-undef

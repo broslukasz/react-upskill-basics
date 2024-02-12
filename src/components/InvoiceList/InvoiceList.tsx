@@ -34,7 +34,7 @@ export default function InvoiceList() {
             {rows.length &&
               rows.map((row) => (
                 <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                  <TableCell component="th" scope="row">
+                  <TableCell data-testid="id" component="th" scope="row">
                     {row.id}
                   </TableCell>
                   <TableCell align="right">{row.createdAt}</TableCell>
@@ -42,11 +42,11 @@ export default function InvoiceList() {
                   <TableCell align="right">{row.items.reduce((a, b) => a + b.amount, 0)}</TableCell>
                   <TableCell align="right">
                     <Link to={`edit/${row.id}`}>
-                      <IconButton aria-label="edit">
+                      <IconButton data-testid="edit-button" aria-label="edit">
                         <EditIcon />
                       </IconButton>
                     </Link>
-                    <IconButton aria-label="delete">
+                    <IconButton data-testid="delete-button" aria-label="delete">
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>

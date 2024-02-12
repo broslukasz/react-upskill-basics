@@ -6,7 +6,7 @@ const getInvoiceList = ({ signal }: { signal: AbortSignal }) =>
   fetch('api/invoices', { signal })
     .then((res) => {
       if (res.status > 399) {
-        throw new Error(`Request failed with status ${res.status}`);
+        throw new Error(`Request fetch failed with status ${res.status}`);
       }
 
       return res;

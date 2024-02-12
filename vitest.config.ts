@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => ({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: ['./vitest-setup.js'],
+    setupFiles: ['./vitest-setup.ts'],
   },
   plugins: [
     AutoImport({

@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import InvoiceList from './InvoiceList';
 import { server } from '../../../setupServer';
 import { HttpResponse, http } from 'msw';
+import NotificationProvider from '../NotificationProvider/NotificationProvider';
 
 describe('Invoice List', () => {
   it('should have labels', async () => {
@@ -40,13 +41,14 @@ describe('Invoice List', () => {
     server.use(http.get('api/invoices', () => HttpResponse.json({ error: 'error' }, { status: 500 })));
 
     renderWithRouter(
-      <Routes>
-        <Route element={<InvoiceList />} path="/" />
-      </Routes>,
-
+      <NotificationProvider>
+        <Routes>
+          <Route element={<InvoiceList />} path="/" />
+        </Routes>
+      </NotificationProvider>,
       { route: '/' },
     );
 
-    expect(await screen.findByText('Request fetch failed with status')).toBeInTheDocument();
+    expect(await screen.findByText('Invoice list fetch failed :( Try Again ;)')).toBeInTheDocument();
   });
 });

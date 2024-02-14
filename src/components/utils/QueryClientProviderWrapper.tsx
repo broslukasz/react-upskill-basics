@@ -1,11 +1,16 @@
-import type { FC, PropsWithChildren } from 'react';
+import { useState, type FC, type PropsWithChildren } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter } from 'react-router-dom';
+import NotificationProvider from '../NotificationProvider/NotificationProvider';
 
-const queryClient = new QueryClient();
+export const QueryClientProviderWrapper: FC<PropsWithChildren> = ({ children }) => {
+  const [queryClient] = useState(() => new QueryClient({ defaultOptions: { queries: { retry: false } } }));
 
-export const QueryClientProviderWrapper: FC<PropsWithChildren> = ({ children }) => (
-  <QueryClientProvider client={queryClient}>
-    <BrowserRouter>{children}</BrowserRouter>
-  </QueryClientProvider>
-);
+  return (
+    <NotificationProvider>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </QueryClientProvider>
+    </NotificationProvider>
+  );
+};

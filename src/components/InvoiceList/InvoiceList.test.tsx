@@ -1,15 +1,14 @@
 import { screen } from '@testing-library/react';
 import { it, describe } from 'vitest';
-import { renderWithRouter } from '../utils/render-with-router';
+import { renderWithInfrastructure } from '../utils/render-with-router';
 import { Route, Routes } from 'react-router-dom';
 import InvoiceList from './InvoiceList';
 import { server } from '../../../setupServer';
 import { HttpResponse, http } from 'msw';
-import NotificationProvider from '../NotificationProvider/NotificationProvider';
 
 describe('Invoice List', () => {
   it('should have labels', async () => {
-    renderWithRouter(
+    renderWithInfrastructure(
       <Routes>
         <Route element={<InvoiceList />} path="/" />
       </Routes>,
@@ -25,7 +24,7 @@ describe('Invoice List', () => {
   });
 
   it('should match items number', async () => {
-    renderWithRouter(
+    renderWithInfrastructure(
       <Routes>
         <Route element={<InvoiceList />} path="/" />
       </Routes>,
@@ -40,15 +39,13 @@ describe('Invoice List', () => {
   it('should display error on api call failed', async () => {
     server.use(http.get('api/invoices', () => HttpResponse.json({ error: 'error' }, { status: 500 })));
 
-    renderWithRouter(
-      <NotificationProvider>
-        <Routes>
-          <Route element={<InvoiceList />} path="/" />
-        </Routes>
-      </NotificationProvider>,
+    renderWithInfrastructure(
+      <Routes>
+        <Route element={<InvoiceList />} path="/" />
+      </Routes>,
       { route: '/' },
     );
 
-    expect(await screen.findByText('Invoice list fetch failed :( Try Again ;)')).toBeInTheDocument();
+    expect(await screen.findByText('Invoice list fetch failed with status 500')).toBeInTheDocument();
   });
 });

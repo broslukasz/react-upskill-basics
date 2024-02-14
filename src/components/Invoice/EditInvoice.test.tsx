@@ -7,7 +7,7 @@ describe('Edit Invoice', () => {
   it('should work', async () => {
     renderWithInfrastructure(
       <Routes>
-        <Route element=<EditInvoice /> path="/invoice/:id" />
+        <Route element={<EditInvoice />} path="/invoice/:id" />
       </Routes>,
 
       { route: 'api/invoices/123' },

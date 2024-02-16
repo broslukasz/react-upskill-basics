@@ -1,7 +1,7 @@
 import { HttpResponse, http } from 'msw';
 
 export const EDIT_INVOICE_HANDLERS = [
-  http.get('/api/invoices/6e1a92c1-6ac3-43ce-8ef4-19b5938b1935', () => {
+  http.get('/api/invoices/:id', () => {
     return HttpResponse.json({
       id: '6e1a92c1-6ac3-43ce-8ef4-19b5938b1935',
       name: 'Little, Bartoletti and Herzog',
@@ -42,7 +42,7 @@ export const EDIT_INVOICE_HANDLERS = [
     });
   }),
 
-  http.put('/api/invoices/6e1a92c1-6ac3-43ce-8ef4-19b5938b1935', () => {
+  http.put('/api/invoices/:id', () => {
     return HttpResponse.json({
       id: '6e1a92c1-6ac3-43ce-8ef4-19b5938b1935',
       name: 'Little, Bartoletti and Herzog',

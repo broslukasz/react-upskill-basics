@@ -41,7 +41,7 @@ describe('Edit Invoice', () => {
   });
 
   it('should saved changed values', async () => {
-    renderWithInfrastructure(
+    const { user } = renderWithInfrastructure(
       <Routes>
         <Route element={<EditInvoice />} path="/edit/:id" />
       </Routes>,
@@ -51,10 +51,10 @@ describe('Edit Invoice', () => {
 
     const companyName = await screen.findByLabelText('Company name', { selector: 'input' });
 
-    await userEvent.type(companyName, ' changed');
+    await user.type(companyName, ' changed');
 
     const button = await screen.findByTestId('save-button');
-    await userEvent.click(button);
+    await user.click(button);
 
     expect(await screen.findByText('Successfully saved :)')).toBeInTheDocument();
     expect(companyName).toHaveValue('Von - Beier changed');
@@ -63,7 +63,7 @@ describe('Edit Invoice', () => {
   it('should show error on save', async () => {
     server.use(http.put('/api/invoices/:id', () => HttpResponse.json({ error: 'error' }, { status: 500 })));
 
-    renderWithInfrastructure(
+    const { user } = renderWithInfrastructure(
       <Routes>
         <Route element={<EditInvoice />} path="/edit/:id" />
       </Routes>,
@@ -73,10 +73,10 @@ describe('Edit Invoice', () => {
 
     const companyName = await screen.findByLabelText('Company name', { selector: 'input' });
 
-    await userEvent.type(companyName, ' changed');
+    await user.type(companyName, ' changed');
 
     const button = await screen.findByTestId('save-button');
-    await userEvent.click(button);
+    await user.click(button);
 
     expect(await screen.findByText('Error while saved :( Try Again ;)')).toBeInTheDocument();
   });

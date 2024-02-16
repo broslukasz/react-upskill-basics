@@ -14,7 +14,7 @@ describe('Edit Invoice', () => {
         <Route element={<EditInvoice />} path="/edit/:id" />
       </Routes>,
 
-      { route: '/edit/:id' },
+      { route: '/edit/6e1a92c1-6ac3-43ce-8ef4-19b5938b1935' },
     );
 
     expect(await screen.findByLabelText('No.')).toBeInTheDocument();
@@ -29,7 +29,7 @@ describe('Edit Invoice', () => {
         <Route element={<EditInvoice />} path="/edit/:id" />
       </Routes>,
 
-      { route: '/edit/:id' },
+      { route: '/edit/6e1a92c1-6ac3-43ce-8ef4-19b5938b1935' },
     );
 
     expect(await screen.findByLabelText('No.', { selector: 'input' })).toHaveValue(
@@ -46,7 +46,7 @@ describe('Edit Invoice', () => {
         <Route element={<EditInvoice />} path="/edit/:id" />
       </Routes>,
 
-      { route: '/edit/:id' },
+      { route: '/edit/6e1a92c1-6ac3-43ce-8ef4-19b5938b1935' },
     );
 
     const companyName = await screen.findByLabelText('Company name', { selector: 'input' });
@@ -61,14 +61,14 @@ describe('Edit Invoice', () => {
   });
 
   it('should show error on save', async () => {
-    server.use(http.put('api/invoices/:id', () => HttpResponse.json({ error: 'error' }, { status: 500 })));
+    server.use(http.put('/api/invoices/:id', () => HttpResponse.json({ error: 'error' }, { status: 500 })));
 
     renderWithInfrastructure(
       <Routes>
         <Route element={<EditInvoice />} path="/edit/:id" />
       </Routes>,
 
-      { route: '/edit/:id' },
+      { route: '/edit/6e1a92c1-6ac3-43ce-8ef4-19b5938b1935' },
     );
 
     const companyName = await screen.findByLabelText('Company name', { selector: 'input' });

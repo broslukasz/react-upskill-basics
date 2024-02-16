@@ -3,7 +3,6 @@ import EditInvoice from './EditInvoice';
 import { renderWithInfrastructure } from '../utils/render-with-router';
 import { Route, Routes } from 'react-router-dom';
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { server } from '../../../setupServer';
 import { HttpResponse, http } from 'msw';
 

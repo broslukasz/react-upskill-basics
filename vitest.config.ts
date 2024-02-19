@@ -1,7 +1,6 @@
 import { defineConfig } from 'vitest/config';
-import AutoImport from 'unplugin-auto-import/vite';
 
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
   resolve: {
     conditions: [],
   },
@@ -10,10 +9,4 @@ export default defineConfig(({ mode }) => ({
     environment: 'jsdom',
     setupFiles: ['./vitest-setup.ts'],
   },
-  plugins: [
-    AutoImport({
-      imports: ['vitest'],
-      dts: true,
-    }),
-  ],
 }));

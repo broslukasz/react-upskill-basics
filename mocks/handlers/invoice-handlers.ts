@@ -1,6 +1,6 @@
 import { HttpResponse, http } from 'msw';
 
-export const EDIT_INVOICE_HANDLERS = [
+export const INVOICE_HANDLERS = [
   http.get('/api/invoices/:id', () => {
     return HttpResponse.json({
       id: '6e1a92c1-6ac3-43ce-8ef4-19b5938b1935',

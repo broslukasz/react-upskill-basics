@@ -32,10 +32,9 @@ describe('Invoice List', () => {
       { route: '/' },
     );
 
-    expect((await screen.findAllByTestId('id')).length).toBe(7);
+    expect((await screen.findAllByRole('row')).length).toBe(7);
   });
 
-  // ToDo it does not trigger error :(
   it('should display error on api call failed', async () => {
     server.use(http.get('api/invoices', () => HttpResponse.json({ error: 'error' }, { status: 500 })));
 

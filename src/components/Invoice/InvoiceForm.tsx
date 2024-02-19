@@ -100,7 +100,7 @@ export default function InvoiceForm({ defaultValues, onSubmit }: InvoiceProps) {
                 </Button>
               </Link>
 
-              <Button data-testid="save-button" variant="contained" type="submit" startIcon={<SaveIcon />}>
+              <Button name="Save" variant="contained" type="submit" startIcon={<SaveIcon />}>
                 Save
               </Button>
             </Grid>

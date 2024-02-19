@@ -52,7 +52,7 @@ describe('Edit Invoice', () => {
 
     await user.type(companyName, ' changed');
 
-    const button = await screen.findByTestId('save-button');
+    const button = await screen.findByRole('button', { name: 'Save' });
     await user.click(button);
 
     expect(await screen.findByText('Successfully saved :)')).toBeInTheDocument();
@@ -74,7 +74,7 @@ describe('Edit Invoice', () => {
 
     await user.type(companyName, ' changed');
 
-    const button = await screen.findByTestId('save-button');
+    const button = await screen.findByRole('button', { name: 'Save' });
     await user.click(button);
 
     expect(await screen.findByText('Error while saved :( Try Again ;)')).toBeInTheDocument();

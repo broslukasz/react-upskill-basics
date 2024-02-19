@@ -42,11 +42,11 @@ export default function InvoiceList() {
                   <TableCell align="right">{row.items.reduce((a, b) => a + b.amount, 0)}</TableCell>
                   <TableCell align="right">
                     <Link to={`edit/${row.id}`}>
-                      <IconButton data-testid="edit-button" aria-label="edit">
+                      <IconButton aria-label="edit">
                         <EditIcon />
                       </IconButton>
                     </Link>
-                    <IconButton data-testid="delete-button" aria-label="delete">
+                    <IconButton aria-label="delete">
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>

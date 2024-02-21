@@ -12,7 +12,7 @@ const updateInvoice = (data: IInvoiceForm) =>
   })
     .then((res) => {
       if (res.status > 399) {
-        throw new Error(`Request failed with status ${res.status}`);
+        throw new Error(`Invoice saving failed with status ${res.status}`);
       }
 
       return res;

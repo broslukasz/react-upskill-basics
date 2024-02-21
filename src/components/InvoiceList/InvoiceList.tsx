@@ -34,7 +34,7 @@ export default function InvoiceList() {
             {rows.length &&
               rows.map((row) => (
                 <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                  <TableCell component="th" scope="row">
+                  <TableCell data-testid="id" component="th" scope="row">
                     {row.id}
                   </TableCell>
                   <TableCell align="right">{row.createdAt}</TableCell>

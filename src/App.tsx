@@ -30,7 +30,7 @@ const router = createBrowserRouter([
 
 const queryClient = new QueryClient();
 
-function App() {
+export function App() {
   return (
     <NotificationProvider>
       <QueryClientProvider client={queryClient}>
